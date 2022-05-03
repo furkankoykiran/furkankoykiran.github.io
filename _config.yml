@@ -16,4 +16,4 @@ github_username:  furkankoykiran
 exclude: ['package.json', 'src' , 'node_modules', 'vendor']
 
 google_analytics:
-  id: 'G-BPTZ4Z00PK'              # fill in your Google Analytics ID
+  id: 'G-N1QZVN6KMY'              # fill in your Google Analytics ID
