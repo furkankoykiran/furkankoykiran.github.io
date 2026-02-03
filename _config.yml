@@ -4,8 +4,12 @@ description: Senior Software Engineer specializing in Python, Automation, and Sc
 # Analytics and Verification
 google_analytics: "G-YRZ96D2VGX" # Add your Google Analytics ID here
 
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
 webmaster_verifications:
-  google: "" # Add your Google Search Console verification code
+  google: "LEiVauGuhGdPxwWU7bq-uQaNYrEu9Aqhv8TM3SaoSsM" # Synced from blog for consistency
   bing: ""
 
 # baseurl: "" # the subpath of your site, e.g. /blog
