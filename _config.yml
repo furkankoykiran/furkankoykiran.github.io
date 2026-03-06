@@ -1,6 +1,8 @@
 # Site settings
 title: Furkan Köykıran
-description: Senior Software Engineer specializing in Python, Automation, and Scalable Backend Systems. Expert in bot architectures and intelligent workflow automation.
+description: Senior Software Engineer & Python Uzmanı. Uzmanlık alanlarım: otomasyon, ölçeklenebilir backend sistemleri, yapay zeka entegrasyonları ve yüksek performanslı bot mimarileri.
+keywords: [Furkan Köykıran, Senior Software Engineer, Python Uzmanı, Backend Architect, Yazılım Geliştirici, Otomasyon, Yapay Zeka, Web3, Full Stack Developer]
+
 # Analytics and Verification
 google_analytics: "G-YRZ96D2VGX" # Add your Google Analytics ID here
 
@@ -17,8 +19,8 @@ url: "https://furkankoykiran.com.tr" # the base hostname & protocol for your sit
 
 # User settings
 username: Furkan Köykıran
-user_description: Senior Software Engineer with a focus on Python-driven automation, high-performance bot architectures, and intelligent API integrations. Passionate about solving complex problems with scalable backend solutions.
-user_title: Senior Software Engineer | Python, Automation & Bot Engineering
+user_description: Senior Software Engineer with a focus on Python-driven automation, high-performance architectures, and intelligent API integrations. Türkiye ve global pazarlarda karmaşık problemleri ölçeklenebilir backend çözümleriyle çözen teknoloji tutkunu.
+user_title: Senior Software Engineer | Python, Automation & Backend Architect
 email: furkankoykiran@gmail.com
 twitter_username: furkankoykiran
 instagram_username: furkankoykiran
@@ -31,4 +33,3 @@ github_username:  furkankoykiran
 
 
 exclude: ['package.json', 'src', 'node_modules', 'vendor']
-
