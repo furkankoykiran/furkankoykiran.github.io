@@ -1,0 +1,145 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Nightly refresh of contributions and project stars.
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+# One deployment at a time; a newer run waits instead of cancelling a
+# deployment that is already in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: 0.167.0
+  PYTHON_VERSION: "3.12"
+  TZ: Europe/Istanbul
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read # actions/configure-pages reads the Pages site settings
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0 # full history for Git-based lastmod dates
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Refresh open-source contributions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/fetch_contributions.py
+
+      - name: Refresh project stars and dates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/build_projects.py --refresh-only
+
+      - name: Check data for blocked terms
+        run: python scripts/blocklist.py check data/projects.json data/contributions.json
+
+      - name: Install Hugo extended ${{ env.HUGO_VERSION }}
+        run: |
+          wget -q -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+          hugo version
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Cache Hugo resources
+        uses: actions/cache@v6
+        with:
+          path: resources/_gen
+          key: hugo-resources-${{ hashFiles('assets/**', 'data/**', 'layouts/**', 'config/**') }}
+          restore-keys: hugo-resources-
+
+      - name: Snapshot the live sitemap
+        run: python scripts/indexnow.py snapshot
+
+      - name: Build
+        env:
+          HUGO_ENVIRONMENT: production
+          # Optional IDs from repository variables (Settings > Secrets and
+          # variables > Actions > Variables). Unset variables render nothing.
+          HUGO_PARAMS_ANALYTICS_GA4: ${{ vars.GA4_ID }}
+          HUGO_PARAMS_ANALYTICS_CLARITY: ${{ vars.CLARITY_ID }}
+          HUGO_PARAMS_ANALYTICS_CFBEACONTOKEN: ${{ vars.CF_BEACON_PORTFOLIO }}
+          HUGO_PARAMS_VERIFICATION_GOOGLE: ${{ vars.GOOGLE_SITE_VERIFICATION }}
+          HUGO_PARAMS_VERIFICATION_BING: ${{ vars.BING_SITE_VERIFICATION }}
+          HUGO_PARAMS_VERIFICATION_YANDEX: ${{ vars.YANDEX_VERIFICATION }}
+        run: hugo --minify --gc
+
+      - name: Guard reserved paths
+        run: python scripts/check_reserved_paths.py
+
+      - name: List changed URLs
+        run: python scripts/indexnow.py diff
+
+      - name: Keep the changed-URL list for the notify job
+        uses: actions/upload-artifact@v7
+        with:
+          name: indexnow
+          path: .indexnow/changed.txt
+          include-hidden-files: true
+          retention-days: 1
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  notify:
+    # Tell IndexNow (Bing, Yandex and others) about new or changed pages.
+    # A failure here never fails the deployment.
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: |
+            scripts
+            config
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/download-artifact@v8
+        with:
+          name: indexnow
+          path: .indexnow
+      - name: Submit to IndexNow
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: ${{ vars.INDEXNOW_KEY }}
+        run: python scripts/indexnow.py submit
