@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="fk-wrap">
+  <header class="fk-page-head">
+    {{ partial "fk/crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lead }}<p class="fk-lead">{{ . }}</p>{{ end }}
+  </header>
+  <div class="fk-about">
+    <article class="fk-prose">
+      {{ .Content }}
+    </article>
+    <aside class="fk-about__side">
+      <div class="fk-ring">
+        <div>
+          {{ partial "fk/picture.html" (dict
+            "img" (resources.Get site.Params.author.image)
+            "widths" (slice 160 320 480)
+            "sizes" "(max-width: 52rem) 144px, 240px"
+            "alt" (i18n "fk.photo_alt")
+            "src" (partial "fk/photo.html" .)
+            "eager" true) }}
+        </div>
+      </div>
+      <p class="fk-status"><span class="fk-status__dot" aria-hidden="true"></span>{{ i18n "fk.status" }}</p>
+      {{ partial "fk/email.html" (dict) }}
+    </aside>
+  </div>
+</div>
+{{ end }}

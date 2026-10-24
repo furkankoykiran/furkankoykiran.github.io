@@ -1,0 +1,17 @@
+{{- $p := . -}}
+{{- $lang := site.Language.Lang -}}
+{{- $txt := index $p $lang -}}
+{{- $isTR := eq $lang "tr" -}}
+{{ $txt.summary }}
+
+{{ $txt.description }}
+
+- {{ cond $isTR "Kategori" "Category" }}: {{ partial "fk/cat-label.html" $p.category | htmlUnescape }}
+- GitHub: {{ $p.url }}{{ with $p.links.live }}
+- {{ cond $isTR "Canlı site" "Live site" }}: {{ . }}{{ end }}{{ with $p.links.package }}
+- {{ cond $isTR "Paket" "Package" }}: {{ . }}{{ end }}{{ with $p.links.model }}
+- Model: {{ . }}{{ end }}{{ with $p.language }}
+- {{ cond $isTR "Dil" "Language" }}: {{ . }}{{ end }}
+- {{ cond $isTR "Yıldız" "Stars" }}: {{ $p.stars }}{{ with $p.tags }}
+- {{ cond $isTR "Teknolojiler" "Technologies" }}: {{ delimit . ", " }}{{ end }}{{ with $p.pushed }}
+- {{ cond $isTR "Son güncelleme" "Last updated" }}: {{ . }}{{ end }}

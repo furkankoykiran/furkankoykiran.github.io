@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{- $all := hugo.Data.projects.projects -}}
+{{- $main := where $all "early" false -}}
+{{- $early := where $all "early" true -}}
+<div class="fk-wrap">
+  <header class="fk-page-head">
+    {{ partial "fk/crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lead }}<p class="fk-lead">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="fk-filters" role="group" aria-label="{{ i18n "fk.filter_label" }}" data-filter-bar>
+    <button type="button" class="fk-chip" data-filter="all" aria-pressed="true">{{ i18n "fk.filter_all" }} <small>{{ len $all }}</small></button>
+    {{- range hugo.Data.projects.categories }}
+      {{- $n := len (where $all "category" .id) }}
+      {{- if gt $n 0 }}
+      <button type="button" class="fk-chip" data-cat="{{ .id }}" data-filter="{{ .id }}" aria-pressed="false">{{ index . site.Language.Lang }} <small>{{ $n }}</small></button>
+      {{- end }}
+    {{- end }}
+  </div>
+  <p class="fk-sr" aria-live="polite" data-filter-status data-template="{{ i18n "fk.projects_count" "%d" }}"></p>
+
+  <section data-filter-group aria-labelledby="all-title">
+    <h2 id="all-title" class="fk-sr">{{ i18n "fk.all_projects" }}</h2>
+    <div class="fk-grid">
+      {{- range $main }}{{ partial "fk/project-card.html" . }}{{ end }}
+    </div>
+  </section>
+
+  {{- with $early }}
+  <section class="fk-early-head" id="early" data-filter-group aria-labelledby="early-title">
+    <header class="fk-head">
+      <span class="fk-kicker">{{ i18n "fk.early_title" }}</span>
+      <h2 id="early-title">{{ i18n "fk.early_title" }}</h2>
+      <p>{{ i18n "fk.early_intro" }}</p>
+    </header>
+    <div class="fk-grid fk-grid--early">
+      {{- range . }}{{ partial "fk/project-card.html" . }}{{ end }}
+    </div>
+  </section>
+  {{- end }}
+  <div class="fk-spacer" aria-hidden="true"></div>
+</div>
+{{ end }}

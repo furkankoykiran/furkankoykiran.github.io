@@ -1,0 +1,110 @@
+{{- /* Document head: titles, descriptions, hreflang (x-default is Turkish),
+  Open Graph, JSON-LD and assets. Replaces the theme's head entirely. */ -}}
+{{- $isTR := eq site.Language.Lang "tr" -}}
+{{- $is404 := eq .Kind "404" -}}
+{{- $title := "" -}}
+{{- if .IsHome -}}
+  {{- $title = .Params.seoTitle | default site.Title -}}
+{{- else if $is404 -}}
+  {{- $title = printf "%s · %s" (i18n "fk.err_title") site.Title -}}
+{{- else -}}
+  {{- $title = .Params.seoTitle | default (printf "%s · %s" .Title site.Title) -}}
+{{- end -}}
+{{- $shortTitle := .Params.seoTitle | default .Title | default site.Title -}}
+{{- $desc := .Description | default .Params.description | default .Summary | default site.Params.description | plainify | htmlUnescape | strings.TrimSpace | truncate 200 -}}
+{{- $og := partial "fk/og-image.html" . -}}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $desc }}">
+  <meta name="author" content="{{ site.Params.author.name }}">
+  <meta name="theme-color" content="#11151D">
+  <meta name="color-scheme" content="dark light">
+  {{- if $is404 }}
+  <meta name="robots" content="noindex">
+  {{- else }}
+  <meta name="robots" content="{{ .Params.robots | default "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{- if .IsTranslated }}
+    {{- range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
+    {{- end }}
+    {{- range where .AllTranslations "Language.Lang" "tr" }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+    {{- end }}
+  {{- else }}
+  <link rel="alternate" hreflang="{{ site.Language.Locale }}" href="{{ .Permalink }}">
+  {{- end }}
+  {{- end }}
+  {{- with .OutputFormats.Get "md" }}
+  <link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown">
+  {{- end }}
+  <link rel="describedby" type="text/plain" href="{{ "llms.txt" | absLangURL }}" title="llms.txt">
+
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:type" content="{{ cond (eq .Params.layout "about") "profile" "website" }}">
+  <meta property="og:title" content="{{ $shortTitle }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:locale" content="{{ cond $isTR "tr_TR" "en_US" }}">
+  <meta property="og:locale:alternate" content="{{ cond $isTR "en_US" "tr_TR" }}">
+  {{- with $og }}
+  <meta property="og:image" content="{{ .Permalink }}">
+  <meta property="og:image:type" content="{{ .MediaType.Type }}">
+  <meta property="og:image:width" content="{{ .Width }}">
+  <meta property="og:image:height" content="{{ .Height }}">
+  <meta property="og:image:alt" content="{{ $shortTitle }}">
+  <meta name="twitter:image" content="{{ .Permalink }}">
+  <meta name="twitter:image:alt" content="{{ $shortTitle }}">
+  {{- end }}
+  {{- if eq .Params.layout "about" }}
+  <meta property="profile:first_name" content="{{ site.Params.author.givenName }}">
+  <meta property="profile:last_name" content="{{ site.Params.author.familyName }}">
+  <meta property="profile:username" content="{{ site.Params.author.githubUser }}">
+  {{- end }}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="{{ site.Params.author.twitter }}">
+  <meta name="twitter:creator" content="{{ site.Params.author.twitter }}">
+  <meta name="twitter:title" content="{{ $shortTitle }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+
+  {{- with site.Params.verification.google }}
+  <meta name="google-site-verification" content="{{ . }}">
+  {{- end }}
+  {{- with site.Params.verification.bing }}
+  <meta name="msvalidate.01" content="{{ . }}">
+  {{- end }}
+  {{- with site.Params.verification.yandex }}
+  <meta name="yandex-verification" content="{{ . }}">
+  {{- end }}
+
+  {{- range site.Params.social }}
+  <link rel="me" href="{{ .url }}">
+  {{- end }}
+  <link rel="me" href="{{ site.Params.blog.url }}">
+
+  {{- /* Apply the colour mode before first paint to avoid a flash. A stored
+    choice wins over params.defaultAppearance. Storage keys follow Blowfish
+    (localStorage "appearance", html.dark). */}}
+  <script>(function(){var d=document.documentElement,s=null;d.classList.add("js");try{s=localStorage.getItem("appearance")}catch(e){}var m=s||(d.dataset.autoAppearance==="true"&&matchMedia("(prefers-color-scheme: light)").matches?"light":d.dataset.defaultAppearance);if(m==="dark")d.classList.add("dark");var t=document.querySelector('meta[name="theme-color"]');if(t)t.content=m==="dark"?"#11151D":"#FFFFFF"})()</script>
+
+  {{- /* Only the site's own CSS is loaded; the theme's Tailwind bundle is
+    not needed by these templates and would add render-blocking bytes. */}}
+  {{- $alg := site.Params.fingerprintAlgorithm | default "sha384" }}
+  {{- $scheme := resources.Get (printf "css/schemes/%s.css" (site.Params.colorScheme | default "fk")) }}
+  {{- $bundle := slice $scheme (resources.Get "css/custom.css") | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint $alg }}
+  <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
+  {{- $js := resources.Get "js/fk.js" | resources.Minify | resources.Fingerprint $alg }}
+  <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ "favicon-96x96.png" | relURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+
+  {{- partial "schema.html" . }}
+  {{- partial "fk/analytics.html" . }}
+</head>

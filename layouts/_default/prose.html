@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="fk-wrap">
+  <header class="fk-page-head">
+    {{ partial "fk/crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lead }}<p class="fk-lead">{{ . }}</p>{{ end }}
+  </header>
+  <article class="fk-prose fk-prose--page">
+    {{ .Content }}
+  </article>
+</div>
+{{ end }}

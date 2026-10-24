@@ -1,0 +1,33 @@
+{{- /* Project card. Context: a project map from data/projects.json */ -}}
+{{- $p := . -}}
+{{- $lang := site.Language.Lang -}}
+{{- $page := site.GetPage (printf "/projeler/%s" $p.slug) -}}
+{{- $url := cond (ne $page nil) $page.RelPermalink $p.url -}}
+{{- $txt := index $p $lang -}}
+<article class="fk-card" data-cat="{{ $p.category }}" data-filter-item>
+  <div class="fk-card__top">
+    <span class="fk-cat">{{ partial "fk/cat-label.html" $p.category }}</span>
+    {{- if and $p.featured (not $p.early) }}<span class="fk-badge">{{ i18n "fk.featured_badge" }}</span>{{ end }}
+  </div>
+  <h3><a href="{{ $url }}">{{ $p.name }}</a></h3>
+  <p>{{ $txt.summary }}</p>
+  {{- with first 4 $p.tags }}
+  <ul class="fk-tags" aria-label="{{ i18n "fk.tech" }}">
+    {{- range . }}<li>{{ . }}</li>{{ end }}
+  </ul>
+  {{- end }}
+  <div class="fk-card__foot">
+    <span class="fk-meta">
+      {{- if gt (int $p.stars) 0 }}
+      <span class="fk-star" title="{{ i18n "fk.stars_aria" $p.stars }}"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "star" }}</span><span class="fk-sr">{{ i18n "fk.stars_aria" $p.stars }}</span><span aria-hidden="true">{{ $p.stars }}</span></span>
+      {{- end }}
+      {{- with $p.language }}<span>{{ . }}</span>{{ end }}
+    </span>
+    <span class="fk-card__links">
+      {{- with $p.links.live }}
+      <a href="{{ . }}" rel="noopener" aria-label="{{ i18n "fk.view_live" }}: {{ $p.name }}" title="{{ i18n "fk.view_live" }}"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "external" }}</span></a>
+      {{- end }}
+      <a href="{{ $p.url }}" rel="noopener" aria-label="{{ i18n "fk.view_repo" }}: {{ $p.name }}" title="{{ i18n "fk.view_repo" }}"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "github" }}</span></a>
+    </span>
+  </div>
+</article>

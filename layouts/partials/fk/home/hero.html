@@ -1,0 +1,45 @@
+{{- $c := hugo.Data.contributions -}}
+{{- $projects := hugo.Data.projects.projects -}}
+{{- $isTR := eq site.Language.Lang "tr" -}}
+<section class="fk-hero" aria-labelledby="hero-title">
+  <div class="fk-wrap fk-hero__grid">
+    <div>
+      <p class="fk-status"><span class="fk-status__dot" aria-hidden="true"></span>{{ i18n "fk.status" }}</p>
+      <h1 id="hero-title">{{ site.Params.author.name }}</h1>
+      <p class="fk-hero__role">{{ i18n "fk.role" }}</p>
+      <p class="fk-hero__lead">{{ i18n "fk.hero_lead" }}</p>
+      <p class="fk-hero__body">{{ i18n "fk.hero_body" }}</p>
+      <div class="fk-cta">
+        {{- with site.GetPage "/projeler" }}
+        <a class="fk-btn fk-btn--primary" href="{{ .RelPermalink }}">{{ i18n "fk.cta_projects" }}<span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "arrow" }}</span></a>
+        {{- end }}
+        <a class="fk-btn" href="{{ cond $isTR site.Params.blog.url site.Params.blog.urlEN }}">
+          <span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "blog" }}</span>{{ i18n "fk.cta_blog" }}</a>
+        <a class="fk-btn fk-btn--ghost" href="#contact">
+          <span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "mail" }}</span>{{ i18n "fk.cta_contact" }}</a>
+      </div>
+      <ul class="fk-facts">
+        {{- with $c }}
+        <li>{{ i18n "fk.fact_prs" (dict "prs" .total_prs "repos" .total_repos) }}</li>
+        {{- end }}
+        <li>{{ i18n "fk.fact_projects" (len $projects) }}</li>
+      </ul>
+    </div>
+    <div class="fk-hero__photo">
+      <div class="fk-ring">
+        <div>
+          {{ partial "fk/picture.html" (dict
+            "img" (resources.Get site.Params.author.image)
+            "widths" (slice 160 320 480 736)
+            "sizes" "(max-width: 52rem) 152px, 368px"
+            "alt" (i18n "fk.photo_alt")
+            "src" (partial "fk/photo.html" .)
+            "eager" true) }}
+        </div>
+      </div>
+      {{- with $c }}
+      <p class="fk-hero__badge" aria-hidden="true"><span>git merge</span> spec-kit · playwright</p>
+      {{- end }}
+    </div>
+  </div>
+</section>

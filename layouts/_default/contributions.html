@@ -1,0 +1,52 @@
+{{ define "main" }}
+{{- $c := hugo.Data.contributions -}}
+<div class="fk-wrap">
+  <header class="fk-page-head">
+    {{ partial "fk/crumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lead }}<p class="fk-lead">{{ . }}</p>{{ end }}
+  </header>
+  {{- with $c }}
+  <dl class="fk-stats">
+    <div><dt>{{ i18n "fk.contrib_stat_prs" }}</dt><dd>{{ .total_prs }}</dd></div>
+    <div><dt>{{ i18n "fk.contrib_stat_repos" }}</dt><dd>{{ .total_repos }}</dd></div>
+    <div><dt>{{ i18n "fk.contrib_stat_stars" }}</dt><dd>{{ partial "fk/num.html" .total_stars }}</dd></div>
+  </dl>
+
+  {{- range $group := slice true false }}
+    {{- $repos := where $c.repos "highlight" $group }}
+    {{- with $repos }}
+    <section class="fk-section-group" aria-labelledby="g-{{ $group }}">
+      <h2 id="g-{{ $group }}" class="fk-kicker">{{ cond $group (i18n "fk.contrib_highlight") (i18n "fk.contrib_other") }}</h2>
+      <div class="fk-contrib">
+        {{- range . }}
+        <article class="fk-card fk-contrib__card" data-cat="oss">
+          <div class="fk-contrib__head">
+            <div>
+              <h3><a href="{{ .url }}" rel="noopener">{{ .repo }}</a></h3>
+              {{- with .description }}<p class="fk-contrib__desc">{{ . }}</p>{{ end }}
+            </div>
+            <span class="fk-meta fk-contrib__meta">
+              <span class="fk-star"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "star" }}</span><span class="fk-sr">{{ i18n "fk.stars_aria" .stars }}</span><span aria-hidden="true">{{ partial "fk/num.html" .stars }}</span></span>
+              {{- with .language }}<span>{{ . }}</span>{{ end }}
+              <span>{{ i18n "fk.merged_prs" (int .pr_count) }}</span>
+            </span>
+          </div>
+          <ul class="fk-contrib__prs">
+            {{- range .prs }}
+            <li>
+              <a href="{{ .url }}" rel="noopener"><span class="fk-mono fk-pr-num">#{{ .number }}</span> {{ .title }}</a>
+              {{- with .merged_at }}<time datetime="{{ . }}" title="{{ i18n "fk.merged_on" }}">{{ time.AsTime . | time.Format ":date_medium" }}</time>{{ end }}
+            </li>
+            {{- end }}
+          </ul>
+        </article>
+        {{- end }}
+      </div>
+    </section>
+    {{- end }}
+  {{- end }}
+  <p class="fk-updated">{{ i18n "fk.contrib_updated" (time.AsTime .generated_at | time.Format ":date_long") }}</p>
+  {{- end }}
+</div>
+{{ end }}

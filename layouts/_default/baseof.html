@@ -1,0 +1,16 @@
+<!doctype html>
+<html
+  lang="{{ site.Language.Locale | default `tr` }}"
+  dir="ltr"
+  data-default-appearance="{{ site.Params.defaultAppearance | default `dark` }}"
+  data-auto-appearance="{{ site.Params.autoSwitchAppearance | default false }}">
+  {{- partial "head.html" . -}}
+  <body class="fk-body">
+    <a class="fk-skip" href="#main-content">{{ i18n "fk.skip_to_main" }}</a>
+    {{ partial "fk/header.html" . }}
+    <main id="main-content" tabindex="-1">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "fk/footer.html" . }}
+  </body>
+</html>

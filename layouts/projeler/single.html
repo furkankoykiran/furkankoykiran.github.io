@@ -1,0 +1,56 @@
+{{ define "main" }}
+{{- $p := .Params.project -}}
+{{- $lang := site.Language.Lang -}}
+{{- $txt := index $p $lang -}}
+<div class="fk-wrap">
+  <header class="fk-page-head">
+    {{ partial "fk/crumbs.html" . }}
+    <p class="fk-proj__cat" data-cat="{{ $p.category }}"><span class="fk-cat">{{ .Params.categoryLabel }}</span></p>
+    <h1>{{ .Title }}</h1>
+    <p class="fk-lead">{{ $txt.summary }}</p>
+  </header>
+  <div class="fk-proj">
+    <article class="fk-proj__body">
+      <h2>{{ i18n "fk.about_project" }}</h2>
+      {{ .Content }}
+      {{- with $p.tags }}
+      <h2>{{ i18n "fk.tech" }}</h2>
+      <ul class="fk-tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      {{- end }}
+      {{- with $p.topics }}
+      <h2>{{ i18n "fk.topics" }}</h2>
+      <ul class="fk-tags">{{ range . }}<li>#{{ . }}</li>{{ end }}</ul>
+      {{- end }}
+
+      {{- $same := where (where hugo.Data.projects.projects "category" $p.category) "slug" "!=" $p.slug }}
+      {{- with first 3 $same }}
+      <h2>{{ i18n "fk.more_in_category" }}</h2>
+      <div class="fk-grid">{{ range . }}{{ partial "fk/project-card.html" . }}{{ end }}</div>
+      {{- end }}
+      <p class="fk-back"><a class="fk-arrow" href="{{ .Parent.RelPermalink }}">{{ i18n "fk.back_to_projects" }}</a></p>
+    </article>
+    <aside class="fk-proj__aside" aria-labelledby="facts-title">
+      <h2 id="facts-title">{{ i18n "fk.facts" }}</h2>
+      <dl>
+        {{- if gt (int $p.stars) 0 }}<dt>GitHub ★</dt><dd>{{ $p.stars }}</dd>{{ end }}
+        {{- with $p.language }}<dt>{{ i18n "fk.language_label" }}</dt><dd>{{ . }}</dd>{{ end }}
+        {{- with $p.license }}<dt>{{ i18n "fk.license" }}</dt><dd>{{ . }}</dd>{{ end }}
+        {{- with $p.created }}<dt>{{ i18n "fk.created" }}</dt><dd><time datetime="{{ . }}">{{ time.AsTime . | time.Format "January 2006" }}</time></dd>{{ end }}
+        {{- with $p.pushed }}<dt>{{ i18n "fk.last_update" }}</dt><dd><time datetime="{{ . }}">{{ time.AsTime . | time.Format ":date_medium" }}</time></dd>{{ end }}
+      </dl>
+      <div class="fk-proj__actions">
+        <a class="fk-btn fk-btn--primary" href="{{ $p.url }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "github" }}</span>{{ i18n "fk.view_repo" }}</a>
+        {{- with $p.links.live }}
+        <a class="fk-btn" href="{{ . }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "external" }}</span>{{ i18n "fk.view_live" }}</a>
+        {{- end }}
+        {{- with $p.links.package }}
+        <a class="fk-btn" href="{{ . }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "package" }}</span>{{ i18n "fk.view_package" }}</a>
+        {{- end }}
+        {{- with $p.links.model }}
+        <a class="fk-btn" href="{{ . }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "package" }}</span>{{ i18n "fk.view_model" }}</a>
+        {{- end }}
+      </div>
+    </aside>
+  </div>
+</div>
+{{ end }}

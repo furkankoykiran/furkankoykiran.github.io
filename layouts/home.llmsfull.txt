@@ -1,0 +1,33 @@
+{{- $isTR := eq site.Language.Lang "tr" -}}
+# {{ site.Params.author.name }}: {{ cond $isTR "tam metin" "full text" }}
+
+> {{ site.Params.description }}
+
+{{ i18n "fk.status" }}. {{ i18n "fk.hero_body" }}
+
+---
+
+{{ with site.GetPage "/hakkimda" -}}
+## {{ .Title }}
+
+URL: {{ .Permalink }}
+
+{{ partial "fk/md-clean.html" . | htmlUnescape }}
+{{- end }}
+
+---
+
+## {{ cond $isTR "Projeler" "Projects" }}
+{{ range hugo.Data.projects.projects }}
+{{- $pg := site.GetPage (printf "/projeler/%s" .slug) }}
+### {{ .name }}
+
+URL: {{ $pg.Permalink }}
+
+{{ partial "fk/md-project.html" . | htmlUnescape }}
+{{ end }}
+---
+
+## {{ with site.GetPage "/katkilar" }}{{ .Title }}{{ end }}
+
+{{ partial "fk/md-contributions.html" . | htmlUnescape }}

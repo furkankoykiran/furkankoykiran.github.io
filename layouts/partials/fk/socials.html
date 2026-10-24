@@ -1,0 +1,9 @@
+<ul class="fk-socials" aria-label="{{ i18n "fk.social_title" }}">
+  {{- range where site.Params.social "support" "!=" true }}
+  <li><a href="{{ .url }}" rel="me noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" .icon }}</span>{{ .name }}</a></li>
+  {{- end }}
+  <li class="fk-socials__label">{{ i18n "fk.support_title" }}</li>
+  {{- range where site.Params.social "support" true }}
+  <li><a href="{{ .url }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" .icon }}</span>{{ .name }}</a></li>
+  {{- end }}
+</ul>

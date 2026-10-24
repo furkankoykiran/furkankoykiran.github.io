@@ -1,0 +1,6 @@
+{{- $id := . -}}
+{{- $label := $id -}}
+{{- range hugo.Data.projects.categories -}}
+  {{- if eq .id $id }}{{ $label = index . site.Language.Lang }}{{ end -}}
+{{- end -}}
+{{- return $label -}}

@@ -1,0 +1,63 @@
+{{- $isTR := eq site.Language.Lang "tr" -}}
+{{- $c := hugo.Data.contributions -}}
+# {{ site.Params.author.name }}
+
+> {{ site.Params.description }}
+
+{{ if $isTR -}}
+{{ site.Params.author.name }}, yeni mezun bir yazılım geliştiricisi. MCP (Model Context Protocol) sunucuları, yapay zekâ ajanları, geliştirici araçları, Python otomasyonu ve trading botları geliştiriyor; büyük açık kaynak projelere katkı veriyor. Tam zamanlı iş, freelance projeler ve ortaklıklar için açık; uzun vadede kendi şirketini kurmak istiyor. Bu sitenin her sayfasının Markdown sürümü, adresin sonuna `index.md` eklenerek alınabilir. English version: {{ "en/llms.txt" | absURL }}
+{{- else -}}
+{{ site.Params.author.name }} is a recent graduate and software developer. He builds MCP (Model Context Protocol) servers, AI agents, developer tools, Python automation and trading bots, and contributes to large open-source projects. He is open to full-time roles, freelance work and collaborations, and wants to start his own company. Every page on this site is also available as Markdown by appending `index.md` to its URL. Turkish version: {{ "llms.txt" | absURL }}
+{{- end }}
+
+## {{ cond $isTR "Sayfalar" "Pages" }}
+
+- [{{ cond $isTR "Ana sayfa" "Home" }}]({{ site.Home.Permalink }}index.md): {{ i18n "fk.hero_lead" }}
+{{- with site.GetPage "/hakkimda" }}
+- [{{ .Title }}]({{ .Permalink }}index.md): {{ .Description }}
+{{- end }}
+{{- with site.GetPage "/projeler" }}
+- [{{ .Title }}]({{ .Permalink }}index.md): {{ .Description }}
+{{- end }}
+{{- with site.GetPage "/katkilar" }}
+- [{{ .Title }}]({{ .Permalink }}index.md): {{ .Description }}
+{{- end }}
+
+## {{ cond $isTR "Projeler" "Projects" }}
+{{ range where hugo.Data.projects.projects "early" false }}
+{{- $pg := site.GetPage (printf "/projeler/%s" .slug) }}
+- [{{ .name }}]({{ $pg.Permalink }}index.md): {{ (index . site.Language.Lang).summary }} ({{ with .language }}{{ . }}, {{ end }}{{ .url }})
+{{- end }}
+
+## {{ cond $isTR "Açık kaynak katkıları" "Open-source contributions" }}
+{{ with $c }}
+{{ cond $isTR "Kendi depoları dışındaki projelerde" "Merged pull requests in projects he doesn't own:" }} {{ .total_prs }} {{ cond $isTR "birleşmiş PR," "PRs across" }} {{ .total_repos }} {{ cond $isTR "proje." "projects." }}
+{{ range .repos }}
+- [{{ .repo }}]({{ .url }}) ({{ .stars }} ★): {{ range $i, $p := .prs }}{{ if $i }}; {{ end }}[{{ .title }}]({{ .url }}){{ end }}
+{{- end }}
+{{- end }}
+
+## {{ cond $isTR "Yazılar" "Writing" }}
+
+- [Blog]({{ cond $isTR site.Params.blog.url site.Params.blog.urlEN }}): {{ cond $isTR "MCP, açık kaynak, Python trading botları ve DevOps üzerine Türkçe ve İngilizce yazılar." "Posts in Turkish and English on MCP, open source, Python trading bots and DevOps." }}
+- [Blog llms.txt]({{ site.Params.blog.url }}llms.txt)
+
+## {{ cond $isTR "İletişim" "Contact" }}
+
+- {{ cond $isTR "E-posta" "E-mail" }}: {{ i18n "fk.email_fallback" }}
+{{- range site.Params.social }}
+- [{{ .name }}]({{ .url }})
+{{- end }}
+
+## Optional
+
+- [{{ cond $isTR "Tam metin" "Full text" }} (llms-full.txt)]({{ "llms-full.txt" | absLangURL }})
+{{- range .Translations }}
+- [{{ .Language.Label }} llms.txt]({{ .Permalink }}llms.txt)
+{{- end }}
+{{- with site.GetPage "/projeler" }}
+{{- range where hugo.Data.projects.projects "early" true }}
+- [{{ .name }}]({{ .url }}): {{ (index . site.Language.Lang).summary }}
+{{- end }}
+{{- end }}
+- [Sitemap]({{ "sitemap.xml" | absLangURL }})

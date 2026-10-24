@@ -1,0 +1,25 @@
+{{- $items := slice
+  (dict "icon" "mcp" "t" "fk.focus_mcp_title" "b" "fk.focus_mcp_body")
+  (dict "icon" "tools" "t" "fk.focus_dev_title" "b" "fk.focus_dev_body")
+  (dict "icon" "chart" "t" "fk.focus_py_title" "b" "fk.focus_py_body")
+  (dict "icon" "merge" "t" "fk.focus_oss_title" "b" "fk.focus_oss_body")
+-}}
+<section class="fk-section fk-section--soft" aria-labelledby="build-title">
+  <div class="fk-wrap">
+    <header class="fk-head">
+      <span class="fk-kicker"><b>01</b> {{ i18n "fk.build_kicker" }}</span>
+      <h2 id="build-title">{{ i18n "fk.build_title" }}</h2>
+      <p>{{ i18n "fk.build_intro" }}</p>
+    </header>
+    <div class="fk-focus">
+      {{- range $i, $f := $items }}
+      <article class="fk-focus__item">
+        <span class="fk-focus__num" aria-hidden="true">0{{ add $i 1 }}</span>
+        <div><span class="fk-focus__icon" aria-hidden="true">{{ partial "fk/svg.html" $f.icon }}</span></div>
+        <h3>{{ i18n $f.t }}</h3>
+        <p>{{ i18n $f.b }}</p>
+      </article>
+      {{- end }}
+    </div>
+  </div>
+</section>

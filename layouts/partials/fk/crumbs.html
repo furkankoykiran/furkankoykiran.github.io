@@ -1,0 +1,10 @@
+{{- $p := . -}}
+<nav class="fk-crumbs" aria-label="{{ i18n "fk.breadcrumb" }}">
+  <ol>
+    <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "fk.home" }}</a></li>
+    {{- range $p.Ancestors.Reverse }}
+      {{- if not .IsHome }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+    {{- end }}
+    <li><span aria-current="page">{{ $p.Title }}</span></li>
+  </ol>
+</nav>

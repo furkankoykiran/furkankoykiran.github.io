@@ -1,0 +1,29 @@
+{{- /* Responsive <picture> (AVIF, WebP, JPEG) for an image resource.
+  Images are resized, never cropped.
+  Args: "img" resource, "widths" slice, "sizes" string, "alt" string,
+        "class" string, "eager" bool, "src" resource (optional <img> src,
+        e.g. a copy at a stable URL; defaults to the largest JPEG). */ -}}
+{{- $img := .img -}}
+{{- $widths := .widths | default (slice 480 800 1200) -}}
+{{- $avif := slice -}}{{- $webp := slice -}}{{- $jpg := slice -}}
+{{- $fallback := "" -}}
+{{- range $widths -}}
+  {{- if le . $img.Width -}}
+    {{- $a := $img.Resize (printf "%dx avif q60" .) -}}
+    {{- $w := $img.Resize (printf "%dx webp q78" .) -}}
+    {{- $j := $img.Resize (printf "%dx jpg q80" .) -}}
+    {{- $avif = $avif | append (printf "%s %dw" $a.RelPermalink .) -}}
+    {{- $webp = $webp | append (printf "%s %dw" $w.RelPermalink .) -}}
+    {{- $jpg = $jpg | append (printf "%s %dw" $j.RelPermalink .) -}}
+    {{- $fallback = $j -}}
+  {{- end -}}
+{{- end -}}
+{{- $src := .src | default $fallback -}}
+<picture>
+  <source type="image/avif" srcset="{{ delimit $avif ", " }}" sizes="{{ .sizes }}">
+  <source type="image/webp" srcset="{{ delimit $webp ", " }}" sizes="{{ .sizes }}">
+  <img src="{{ $src.RelPermalink }}" srcset="{{ delimit $jpg ", " }}" sizes="{{ .sizes }}"
+    width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ .alt }}"
+    {{ with .class }}class="{{ . }}"{{ end }}
+    {{ if .eager }}loading="eager" fetchpriority="high"{{ else }}loading="lazy"{{ end }} decoding="async">
+</picture>

@@ -1,0 +1,6 @@
+{{- /* Links open in the same tab; external links get rel="noopener". */ -}}
+{{- $external := or (strings.HasPrefix .Destination "http://") (strings.HasPrefix .Destination "https://") -}}
+<a href="{{ .Destination | safeURL }}"
+  {{- with .Title }} title="{{ . }}"{{ end }}
+  {{- if $external }} rel="noopener"{{ end }}>{{ .Text }}</a>
+{{- /**/ -}}

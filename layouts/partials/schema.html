@@ -1,0 +1,137 @@
+{{- /* JSON-LD graph for every page. Person and WebSite have stable ids
+  (/#person, /#website) shared by both languages. */ -}}
+{{- $isTR := eq site.Language.Lang "tr" -}}
+{{- $a := site.Params.author -}}
+{{- $root := site.BaseURL -}}
+{{- $personID := printf "%s#person" $root -}}
+{{- $siteID := printf "%s#website" $root -}}
+{{- $lang := cond $isTR "tr-TR" "en" -}}
+
+{{- $photo := partial "fk/photo.html" . -}}
+{{- $copyright := printf "© %s" $a.name -}}
+{{- $image := dict
+  "@type" "ImageObject"
+  "@id" (printf "%s#photo" $root)
+  "url" $photo.Permalink
+  "contentUrl" $photo.Permalink
+  "width" $photo.Width
+  "height" $photo.Height
+  "caption" (i18n "fk.photo_alt")
+  "creditText" $a.name
+  "creator" (dict "@id" $personID)
+  "copyrightNotice" $copyright
+-}}
+{{- $sameAs := slice -}}
+{{- range site.Params.social }}{{ $sameAs = $sameAs | append .url }}{{ end -}}
+{{- $sameAs = $sameAs | append site.Params.blog.url -}}
+
+{{- $person := dict
+  "@type" "Person"
+  "@id" $personID
+  "name" $a.name
+  "alternateName" $a.alternateName
+  "givenName" $a.givenName
+  "familyName" $a.familyName
+  "url" $root
+  "image" $image
+  "jobTitle" (cond $isTR "Yazılım Geliştirici" "Software Developer")
+  "description" site.Params.description
+  "knowsAbout" (slice "Model Context Protocol" "AI agents" "Python" "TypeScript" "Developer tools" "Automation" "Algorithmic trading" "Open source")
+  "knowsLanguage" (slice "tr" "en")
+  "nationality" (dict "@type" "Country" "name" "Türkiye")
+  "seeks" (dict "@type" "Demand" "description" (cond $isTR "Yazılım geliştirici pozisyonları ve ortaklıklar" "Software developer roles and collaborations"))
+  "sameAs" $sameAs
+-}}
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" $siteID
+  "url" $root
+  "name" $a.name
+  "alternateName" (urls.Parse $root).Host
+  "description" site.Params.description
+  "inLanguage" (slice "tr-TR" "en")
+  "publisher" (dict "@id" $personID)
+  "author" (dict "@id" $personID)
+-}}
+{{- $graph := slice $person $website -}}
+
+{{- /* The page itself */ -}}
+{{- $pageType := "WebPage" -}}
+{{- if eq .Params.layout "about" }}{{ $pageType = "ProfilePage" }}{{ end -}}
+{{- if and .IsSection (eq .Section "projeler") }}{{ $pageType = "CollectionPage" }}{{ end -}}
+{{- if eq .Params.layout "contributions" }}{{ $pageType = "CollectionPage" }}{{ end -}}
+{{- $webpage := dict
+  "@type" $pageType
+  "@id" (printf "%s#webpage" .Permalink)
+  "url" .Permalink
+  "name" (.Params.seoTitle | default .Title | default site.Title)
+  "description" (.Description | default .Params.description | default site.Params.description)
+  "inLanguage" $lang
+  "isPartOf" (dict "@id" $siteID)
+-}}
+{{- if not .Lastmod.IsZero -}}
+  {{- $webpage = merge $webpage (dict "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")) -}}
+{{- end -}}
+{{- if or .IsHome (eq .Params.layout "about") -}}
+  {{- $webpage = merge $webpage (dict "mainEntity" (dict "@id" $personID) "about" (dict "@id" $personID)) -}}
+{{- end -}}
+{{- with partial "fk/og-image.html" . -}}
+  {{- $og := dict
+    "@type" "ImageObject"
+    "@id" (printf "%s#primaryimage" $.Permalink)
+    "url" .Permalink
+    "contentUrl" .Permalink
+    "width" .Width
+    "height" .Height
+    "caption" ($.Params.seoTitle | default $.Title | default site.Title)
+    "creditText" $a.name
+    "copyrightNotice" $copyright
+  -}}
+  {{- $webpage = merge $webpage (dict "primaryImageOfPage" $og "image" (slice $og)) -}}
+{{- end -}}
+
+{{- /* Projects: ItemList of SoftwareSourceCode on the list, one entity per page */ -}}
+{{- if and .IsSection (eq .Section "projeler") -}}
+  {{- $items := slice -}}
+  {{- range $i, $p := .RegularPages.ByWeight -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "url" $p.Permalink "name" $p.Title) -}}
+  {{- end -}}
+  {{- $webpage = merge $webpage (dict "mainEntity" (dict "@type" "ItemList" "numberOfItems" (len $items) "itemListElement" $items)) -}}
+{{- end -}}
+{{- with .Params.project -}}
+  {{- $code := dict
+    "@type" "SoftwareSourceCode"
+    "@id" (printf "%s#code" $.Permalink)
+    "name" .name
+    "description" (index . (cond $isTR "tr" "en")).summary
+    "url" $.Permalink
+    "codeRepository" .url
+    "author" (dict "@id" $personID)
+    "creator" (dict "@id" $personID)
+    "keywords" (delimit (.topics | default slice) ", ")
+    "inLanguage" $lang
+  -}}
+  {{- with .language }}{{ $code = merge $code (dict "programmingLanguage" .) }}{{ end -}}
+  {{- with .license }}{{ $code = merge $code (dict "license" (printf "https://spdx.org/licenses/%s.html" .)) }}{{ end -}}
+  {{- with .created }}{{ $code = merge $code (dict "dateCreated" .) }}{{ end -}}
+  {{- with .pushed }}{{ $code = merge $code (dict "dateModified" .) }}{{ end -}}
+  {{- with .links.live }}{{ $code = merge $code (dict "sameAs" .) }}{{ end -}}
+  {{- $webpage = merge $webpage (dict "mainEntity" (dict "@id" (printf "%s#code" $.Permalink))) -}}
+  {{- $graph = $graph | append $code -}}
+{{- end -}}
+{{- $graph = $graph | append $webpage -}}
+
+{{- /* BreadcrumbList on everything except the home page */ -}}
+{{- if not (or .IsHome (eq .Kind "404")) -}}
+  {{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" (i18n "fk.home") "item" site.Home.Permalink) -}}
+  {{- $pos := 1 -}}
+  {{- range .Ancestors.Reverse -}}
+    {{- if not .IsHome -}}
+      {{- $pos = add $pos 1 -}}
+      {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $pos "name" .Title "item" .Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add $pos 1) "name" .Title "item" .Permalink) -}}
+  {{- $graph = $graph | append (dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" .Permalink) "itemListElement" $crumbs) -}}
+{{- end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

@@ -1,0 +1,12 @@
+{{- /* E-mail link assembled in the browser (assets/js/fk.js). The address
+  is only present base64-encoded; without JS a readable "at/dot" form shows.
+  Args: dict "class" "fk-btn ..." "label" (optional) "plain" (bool) */ -}}
+{{- $b64 := site.Params.author.emailB64 -}}
+{{- if .plain -}}
+<a data-e="{{ $b64 }}" href="#contact" class="{{ .class | default "fk-link" }}"><span data-e-label>{{ i18n "fk.email_fallback" }}</span></a>
+{{- else -}}
+<a data-e="{{ $b64 }}" href="#contact" class="{{ .class | default "fk-btn fk-btn--primary" }}">
+  <span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "mail" }}</span>
+  <span>{{ .label | default (i18n "fk.email_button") }}</span>
+</a>
+{{- end -}}

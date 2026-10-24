@@ -1,0 +1,19 @@
+{{- /* Returns true if the string contains a term from data/blocklist.toml.
+  Every substring of a term's length is hashed and compared, so the terms
+  never appear in the repository in plain text. */ -}}
+{{- $text := lower (string .) -}}
+{{- $n := strings.RuneCount $text -}}
+{{- $hit := false -}}
+{{- range hugo.Data.blocklist.terms -}}
+  {{- $len := int .length -}}
+  {{- $hash := .sha256 -}}
+  {{- if and (not $hit) (ge $n $len) -}}
+    {{- range $i := seq 0 (sub $n $len) -}}
+      {{- if eq (substr $text $i $len | crypto.SHA256) $hash -}}
+        {{- $hit = true -}}
+        {{- break -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $hit -}}

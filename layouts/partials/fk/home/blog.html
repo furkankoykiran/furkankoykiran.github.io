@@ -1,0 +1,28 @@
+{{- $isTR := eq site.Language.Lang "tr" -}}
+{{- $blog := cond $isTR site.Params.blog.url site.Params.blog.urlEN -}}
+{{- $posts := partialCached "fk/blog-posts.html" . site.Language.Lang -}}
+<section class="fk-section" aria-labelledby="blog-title">
+  <div class="fk-wrap">
+    <header class="fk-head fk-head--row">
+      <div>
+        <span class="fk-kicker"><b>04</b> {{ i18n "fk.blog_kicker" }}</span>
+        <h2 id="blog-title">{{ i18n "fk.blog_title" }}</h2>
+        <p>{{ i18n "fk.blog_intro" }}</p>
+      </div>
+      <a class="fk-arrow" href="{{ $blog }}">{{ i18n "fk.blog_all" }}</a>
+    </header>
+    {{- if $posts }}
+    <div class="fk-posts">
+      {{- range $posts }}
+      <article class="fk-card fk-post">
+        {{- if not .date.IsZero }}<time datetime="{{ .date.Format "2006-01-02" }}">{{ .date | time.Format ":date_long" }}</time>{{ end }}
+        <h3><a href="{{ .url }}">{{ .title }}</a></h3>
+        {{- with .summary }}<p>{{ . }}</p>{{ end }}
+      </article>
+      {{- end }}
+    </div>
+    {{- else }}
+    <p class="fk-note">{{ i18n "fk.blog_fallback" }} <a class="fk-link" href="{{ $blog }}">{{ $blog }}</a></p>
+    {{- end }}
+  </div>
+</section>
