@@ -1,0 +1,51 @@
+Content licence and third-party notices
+=======================================
+
+The MIT licence in LICENSE covers the source code only: templates (layouts/),
+styles and scripts (assets/css/, assets/js/), configuration (config/),
+maintenance scripts (scripts/), workflows (.github/) and tooling files.
+
+
+Content: all rights reserved
+----------------------------
+
+Copyright (c) 2026 Furkan Köykıran. All rights reserved.
+
+The following are NOT licensed for reuse. They may not be copied, modified or
+redistributed without prior written permission:
+
+  - written content: content/, the copy in i18n/, and the project
+    descriptions in data/projects.json;
+  - photographs of Furkan Köykıran: assets/img/furkan-koykiran.jpg and every
+    image derived from it;
+  - the FK logo, favicons and app icons: static/*.png, static/favicon.ico;
+  - the Open Graph artwork: assets/img/og-base.png and the generated
+    social images.
+
+If you fork this repository to build your own site, replace these files with
+your own. Contribution data in data/contributions.json describes public
+GitHub activity and links to the respective projects.
+
+
+Third-party components
+----------------------
+
+Blowfish theme (themes/blowfish, Git submodule)
+  MIT License, Copyright (c) 2022 Nuno Coração.
+  https://github.com/nunocoracao/blowfish
+
+Font Awesome Free 6 icons (shipped with Blowfish in themes/blowfish/assets/icons,
+inlined into pages as SVG)
+  Icons: CC BY 4.0, Copyright Fonticons, Inc. https://fontawesome.com/license/free
+  Brand icons are trademarks of their respective owners.
+
+Poppins (assets/fonts/Poppins-*.ttf)
+  SIL Open Font License 1.1, Copyright 2020 The Poppins Project Authors.
+  Full text: assets/fonts/OFL-Poppins.txt
+
+IBM Plex Mono (assets/fonts/IBMPlexMono-Medium.ttf)
+  SIL Open Font License 1.1, Copyright 2017 IBM Corp.,
+  with Reserved Font Name "Plex". Full text: assets/fonts/OFL-IBMPlexMono.txt
+
+The fonts are only used at build time to draw text on Open Graph images;
+they are not served to visitors.
