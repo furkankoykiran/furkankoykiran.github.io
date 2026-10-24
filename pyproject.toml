@@ -1,0 +1,28 @@
+# Tooling configuration for the maintenance scripts in scripts/.
+# The site itself is built by Hugo; this is not an installable package.
+
+[project]
+name = "furkankoykiran-site-scripts"
+version = "1.0.0"
+description = "Data and maintenance scripts for furkankoykiran.com.tr"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Furkan Köykıran" }]
+dependencies = []
+
+[project.optional-dependencies]
+# Only scripts/make_og_base.py needs Pillow.
+og = ["pillow>=10"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["scripts"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "C4", "RUF", "PTH", "LOG"]
+# Turkish text legitimately uses dotless i and similar letters.
+ignore = ["RUF001"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["common"]
