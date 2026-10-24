@@ -1,10 +1,12 @@
 ---
 title: "Privacy and cookies"
+seoTitle: "Privacy and cookie policy (KVKK, GDPR) · Furkan Köykıran"
 url: /en/privacy/
 layout: prose
 description: "Privacy policy for furkankoykiran.com.tr: what data is processed by which tools and on what legal basis, cookies, and your rights under KVKK and GDPR."
 lead: "There are no ads on this site and I don't sell your personal data. Analytics tools only use cookies if you allow them."
 ogKicker: "Privacy"
+ogTitle: "Privacy and cookie policy"
 lastmod: 2026-10-23
 ---
 

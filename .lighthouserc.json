@@ -13,10 +13,7 @@
         "formFactor": "mobile",
         "screenEmulation": {
           "mobile": true
-        },
-        "skipAudits": [
-          "robots-txt"
-        ]
+        }
       }
     },
     "assert": {

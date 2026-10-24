@@ -28,7 +28,8 @@ User-agent: CCBot
 User-agent: Bytespider
 Allow: /
 Disallow: /*?*
-Content-Signal: search=yes, ai-input=yes, ai-train=yes
+# Content signals (contentsignals.org), kept as a comment because Yandex and
+# Google reject unknown directives: search=yes, ai-input=yes, ai-train=yes
 
 Sitemap: {{ "sitemap.xml" | absURL }}
 {{- /* Sitemaps of the project sites, listed only if they respond at build time. */}}
