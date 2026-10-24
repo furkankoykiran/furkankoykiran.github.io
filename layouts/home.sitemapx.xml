@@ -27,11 +27,12 @@
       <image:loc>{{ $photo.Permalink }}</image:loc>
     </image:image>
     {{- end }}
-    {{- with partial "fk/og-image.html" . }}
+    {{- /* Each language renders its own Open Graph images (the titles use
+      that language's strings), so pages of the other language only get
+      the URL here. */}}
     <image:image>
-      <image:loc>{{ .Permalink }}</image:loc>
+      <image:loc>{{ if eq .Language.Lang site.Language.Lang }}{{ (partial "fk/og-image.html" .).Permalink }}{{ else }}{{ partial "fk/og-name.html" . | absURL }}{{ end }}</image:loc>
     </image:image>
-    {{- end }}
   </url>
   {{- end }}
 {{- end }}

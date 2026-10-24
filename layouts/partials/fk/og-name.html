@@ -1,0 +1,5 @@
+{{- /* Path of a page's Open Graph image: images/og/<author>-<page path>.jpg. */ -}}
+{{- $slug := strings.Trim (strings.TrimSuffix ".html" .RelPermalink) "/" | replaceRE `[^A-Za-z0-9]+` "-" | lower -}}
+{{- $name := urlize (site.Params.author.alternateName | default site.Title) -}}
+{{- if $slug }}{{ $name = printf "%s-%s" $name $slug }}{{ end -}}
+{{- return printf "images/og/%s.jpg" $name -}}

@@ -1,5 +1,5 @@
 {{- /* Returns the page's 1200x630 Open Graph image, published at
-  /images/og/<name>-<page path>.jpg. The title is drawn on a transparent box
+  the path fk/og-name.html gives. The title is drawn on a transparent box
   (so long titles wrap inside the left area) and laid over og-base.png,
   which scripts/make_og_base.py renders. */ -}}
 {{- $p := . -}}
@@ -14,13 +14,19 @@
 {{- else if $p.Params.ogKicker -}}
   {{- $kicker = $p.Params.ogKicker -}}
 {{- end -}}
-{{- $title = $title | truncate 64 -}}
+{{- $title = $title | truncate 64 | htmlUnescape -}}
 {{- /* Turkish casing rules: i -> İ, ı -> I. */ -}}
 {{- if $isTR }}{{ $kicker = replace (replace $kicker "i" "İ") "ı" "I" }}{{ end -}}
 {{- $kicker = upper $kicker -}}
 {{- $sub := "" -}}
-{{- with $p.Params.project }}{{ $sub = (index . $p.Language.Lang).summary | truncate 120 }}{{ end -}}
-{{- $size := cond (gt (len $title) 40) 52 60 -}}
+{{- with $p.Params.project }}{{ $sub = (index . $p.Language.Lang).summary | truncate 120 | htmlUnescape }}{{ end -}}
+{{- /* Font size and line count are estimated from the title length
+  (Poppins Bold is about 0.6em per character on average, wider for lowercase words, the text box is 720px wide).
+  A title without spaces cannot wrap, so it shrinks to fit one line. */ -}}
+{{- $n := strings.RuneCount $title -}}
+{{- $size := cond (gt $n 20) 52 60 -}}
+{{- if not (strings.Contains $title " ") }}{{ $size = math.Max 36 (math.Min 60 (math.Floor (div 700.0 (mul $n 0.7)))) | int }}{{ end -}}
+{{- $lines := math.Ceil (div (mul $n 0.6 $size) 720.0) | int -}}
 
 {{- $base := resources.Get "img/og-base.png" -}}
 {{- $box := resources.Get "img/og-textbox.png" -}}
@@ -32,13 +38,10 @@
 -}}
 {{- with $sub -}}
   {{- $regular := resources.Get "fonts/Poppins-Regular.ttf" -}}
-  {{- $y := cond (gt (len $title) 20) 196 128 -}}
+  {{- $y := add 46 (mul $lines (add $size 6)) 20 -}}
   {{- $text = $text | images.Filter (images.Text . (dict "font" $regular "size" 26 "color" "#b9c5d6" "linespacing" 8 "x" 0 "y" $y)) -}}
 {{- end -}}
 {{- $img := $base | images.Filter (images.Overlay $text 80 150) -}}
 
-{{- $slug := strings.TrimSuffix ".html" $p.RelPermalink | strings.Trim "/" | replaceRE `[^A-Za-z0-9]+` "-" | lower -}}
-{{- $name := urlize (site.Params.author.alternateName | default site.Title) -}}
-{{- if $slug }}{{ $name = printf "%s-%s" $name $slug }}{{ end -}}
-{{- $img = $img.Process "jpg q84" | resources.Copy (printf "images/og/%s.jpg" $name) -}}
+{{- $img = $img.Process "jpg q84" | resources.Copy (partial "fk/og-name.html" $p) -}}
 {{- return $img -}}
