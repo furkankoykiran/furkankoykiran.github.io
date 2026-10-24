@@ -1,0 +1,26 @@
+{{- /* Content adapter: one page per project in data/projects.json
+  (scripts/build_projects.py). Both languages use an identical copy of this
+  file and pick their text by language; edit the data, not the pages. */ -}}
+{{- $lang := .Site.Language.Lang -}}
+{{- $cats := dict -}}
+{{- range hugo.Data.projects.categories }}{{ $cats = merge $cats (dict .id (index . $lang)) }}{{ end -}}
+{{- range $i, $p := hugo.Data.projects.projects -}}
+  {{- $txt := index $p $lang -}}
+  {{- $body := $txt.description | default $txt.summary -}}
+  {{- $dates := dict -}}
+  {{- with $p.created }}{{ $dates = merge $dates (dict "date" (time.AsTime .)) }}{{ end -}}
+  {{- with $p.pushed }}{{ $dates = merge $dates (dict "lastmod" (time.AsTime .)) }}{{ end -}}
+  {{- $.AddPage (dict
+    "kind" "page"
+    "path" $p.slug
+    "title" $p.name
+    "weight" (add $i 1)
+    "dates" $dates
+    "content" (dict "mediaType" "text/markdown" "value" $body)
+    "params" (dict
+      "description" $txt.summary
+      "project" $p
+      "categoryLabel" (index $cats $p.category)
+    )
+  ) -}}
+{{- end -}}

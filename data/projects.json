@@ -1,0 +1,1456 @@
+{
+  "generated_at": "2026-10-23T16:13:40Z",
+  "source": "repo-audit",
+  "categories": [
+    {
+      "id": "mcp",
+      "tr": "MCP ve yapay zekâ ajanları",
+      "en": "MCP & AI agents",
+      "color": "violet"
+    },
+    {
+      "id": "devtools",
+      "tr": "Geliştirici araçları",
+      "en": "Developer tools",
+      "color": "blue"
+    },
+    {
+      "id": "trading",
+      "tr": "Trading, kripto ve ödeme",
+      "en": "Trading, crypto & payments",
+      "color": "amber"
+    },
+    {
+      "id": "web",
+      "tr": "Oyunlar ve web uygulamaları",
+      "en": "Games & web apps",
+      "color": "rose"
+    },
+    {
+      "id": "data",
+      "tr": "Veri ve makine öğrenmesi",
+      "en": "Data & ML",
+      "color": "emerald"
+    },
+    {
+      "id": "early",
+      "tr": "İlk projeler",
+      "en": "Early projects",
+      "color": "slate"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "claude",
+      "name": ".claude",
+      "repo": "furkankoykiran/.claude",
+      "url": "https://github.com/furkankoykiran/.claude",
+      "links": {},
+      "stars": 5,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ],
+      "topics": [
+        "claude-code",
+        "anthropic",
+        "ai-agents",
+        "skills",
+        "hooks",
+        "mcp",
+        "model-context-protocol",
+        "developer-tools",
+        "dotfiles",
+        "cli"
+      ],
+      "category": "devtools",
+      "featured": true,
+      "featured_rank": 0,
+      "early": false,
+      "license": "",
+      "created": "2026-04-26",
+      "pushed": "2026-10-23",
+      "tr": {
+        "summary": "Claude Code için tek komutla kurulan, tekrar üretilebilir bir araç takımı. Her skill incelenmiş bir commit'e sabitlenir, güncellemeler PR olarak gelir.",
+        "description": "Claude Code için tekrar üretilebilir ve doğrulanabilir bir kurulum araç takımı: güvenlik denetimli skill kataloğu, agent'lar, hook'lar, MCP başlangıçları ve sağlayıcı (Codex/Gemini/Vertex) geçişi. Her skill bir commit SHA'sına pinlenir, lisans ve içerik özetiyle kaydedilir; upstream güncellemeleri otomatik PR'lar olarak gelir. TypeScript/Bun ile yazılmış bir katalog CLI'ı ve çok platformlu (Linux/macOS/Windows/WSL) kurulum betikleriyle gelir."
+      },
+      "en": {
+        "summary": "A one-command, reproducible Claude Code setup. Every skill is pinned to a reviewed commit and upstream updates arrive as pull requests.",
+        "description": "Claude Code Toolkit: a reproducible, verifiable Claude Code setup. Security-gated skill catalog pinned to reviewed commit SHAs, agents, hooks, MCP starters and Codex/Gemini/Vertex provider switching, installed with one command on Linux, macOS, Windows and WSL. TypeScript/Bun catalog CLI, upstream updates as reviewed PRs."
+      }
+    },
+    {
+      "slug": "freqtrade-mcp",
+      "name": "freqtrade-mcp",
+      "repo": "furkankoykiran/freqtrade-mcp",
+      "url": "https://github.com/furkankoykiran/freqtrade-mcp",
+      "links": {},
+      "stars": 2,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "ESLint",
+        "MCP SDK",
+        "Prettier",
+        "Zod"
+      ],
+      "topics": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "freqtrade",
+        "trading-bot",
+        "algorithmic-trading",
+        "crypto-trading",
+        "cryptocurrency",
+        "ai-agents",
+        "claude"
+      ],
+      "category": "mcp",
+      "featured": true,
+      "featured_rank": 1,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-04-04",
+      "pushed": "2026-04-04",
+      "tr": {
+        "summary": "Freqtrade botunu REST API üzerinden yapay zekâ ajanlarına açan MCP sunucusu: kâr istatistikleri, işlemler ve bot kontrolü.",
+        "description": "Freqtrade kripto ticaret botunun REST API'sine bağlanan TypeScript MCP sunucusu; hesap/kâr istatistikleri, işlem yönetimi, piyasa verisi, beyaz/kara liste, işlem açma/kapatma ve bot yaşam döngüsü araçları sunar. npm ve GitHub Packages'ta yayınlanır."
+      },
+      "en": {
+        "summary": "An MCP server that opens a Freqtrade bot to AI agents through its REST API: profit stats, trades and bot control.",
+        "description": "MCP server for Freqtrade. Connects Claude, Cursor and Cline to a running crypto trading bot through its REST API: balance and profit stats, open trades, force entry and exit, market data, pair whitelists and blacklists, and bot lifecycle control. TypeScript, published on npm."
+      }
+    },
+    {
+      "slug": "quorum",
+      "name": "Quorum",
+      "repo": "furkankoykiran/Quorum",
+      "url": "https://github.com/furkankoykiran/Quorum",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "MCP SDK",
+        "Pydantic",
+        "Uvicorn",
+        "httpx",
+        "pytest",
+        "uv"
+      ],
+      "topics": [
+        "multi-agent",
+        "ai-agents",
+        "langgraph",
+        "llm",
+        "trading-bot",
+        "solana",
+        "squads",
+        "jupiter",
+        "multisig",
+        "shapley-value"
+      ],
+      "category": "trading",
+      "featured": true,
+      "featured_rank": 2,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-04-07",
+      "pushed": "2026-07-06",
+      "tr": {
+        "summary": "Her işlemi tartışıp oylayan çok ajanlı bir trading komitesi. Solana üzerinde multisig ile işlem yapar, kârı Shapley yöntemiyle paylaştırır.",
+        "description": "Her işlemi düz metinle tartışan, oylayan ve Solana üzerinde Squads V4 multisig + Jupiter ile yürüten çok ajanlı bir trading komitesi; gerçekleşen PnL'i LLM tabanlı bir Shapley atıfçısıyla operatör cüzdanlarına zincir üstünde paylaştırır. LangGraph uzman ajanları, FastAPI API ve React 'Observatory' arayüzünden oluşur; SWARM Hackathon 2026 için yapılmıştır."
+      },
+      "en": {
+        "summary": "A multi-agent trading committee that debates and votes on every trade, executes on Solana via multisig and splits profit with Shapley attribution.",
+        "description": "Multi-agent trading committee built for the SWARM Hackathon 2026: LangGraph specialist agents debate and vote on each trade, execution runs on Solana through a Squads V4 multisig and Jupiter, and realized PnL is split among operators by an LLM-driven Shapley attributor. Python, FastAPI, React."
+      }
+    },
+    {
+      "slug": "omniwire-mcp",
+      "name": "OmniWire-MCP",
+      "repo": "furkankoykiran/OmniWire-MCP",
+      "url": "https://github.com/furkankoykiran/OmniWire-MCP",
+      "links": {
+        "package": "https://www.npmjs.com/package/@furkankoykiran/omniwire-mcp"
+      },
+      "stars": 6,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "Docker",
+        "ESLint",
+        "MCP SDK",
+        "Vitest",
+        "Zod"
+      ],
+      "topics": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "news-aggregation",
+        "rss",
+        "atom",
+        "feed-parser",
+        "circuit-breaker",
+        "fault-tolerance",
+        "ai-agents"
+      ],
+      "category": "mcp",
+      "featured": true,
+      "featured_rank": 3,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-02-05",
+      "pushed": "2026-03-06",
+      "tr": {
+        "summary": "RSS, Atom, JSON ve HTML kaynaklarını tek biçime çeviren, devre kesicili ve hataya dayanıklı haber MCP sunucusu.",
+        "description": "RSS, Atom, JSON ve HTML beslemelerini evrensel ayrıştırıcıyla normalize eden, devre kesici (circuit breaker) tabanlı Sentinel servisi ve uzaktan sıcak yeniden yüklenebilir yapılandırması olan TypeScript haber toplama MCP sunucusu. npm, GitHub Packages ve Docker ile dağıtılır."
+      },
+      "en": {
+        "summary": "A fault-tolerant news MCP server that normalises RSS, Atom, JSON and HTML feeds behind circuit breakers.",
+        "description": "Fault-tolerant news aggregation MCP server. A universal parser normalises RSS, Atom, JSON and HTML feeds; a circuit-breaker based Sentinel service isolates failing sources and feed configuration hot-reloads from a remote URL. TypeScript, Zod and Vitest; shipped via npm, GitHub Packages and Docker."
+      }
+    },
+    {
+      "slug": "devto-mcp",
+      "name": "DevTo-MCP",
+      "repo": "furkankoykiran/DevTo-MCP",
+      "url": "https://github.com/furkankoykiran/DevTo-MCP",
+      "links": {
+        "package": "https://www.npmjs.com/package/@furkankoykiran/devto-mcp"
+      },
+      "stars": 6,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "ESLint",
+        "MCP SDK",
+        "Vitest",
+        "Zod"
+      ],
+      "topics": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "devto",
+        "forem",
+        "blogging",
+        "content-management",
+        "ai-agents",
+        "claude",
+        "typescript"
+      ],
+      "category": "mcp",
+      "featured": true,
+      "featured_rank": 4,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-02-06",
+      "pushed": "2026-03-06",
+      "tr": {
+        "summary": "DEV Community (Forem) API'si için MCP sunucusu; makale, yorum, etiket ve okuma listesi araçları.",
+        "description": "DEV Community (Forem) API için TypeScript MCP sunucusu; makale, yorum, kullanıcı, etiket, organizasyon, takipçi ve okuma listesi araçları sunar, yeniden deneme ve hız sınırı farkındalığı olan bir API istemcisi içerir. Tepki aracı API kısıtları nedeniyle devre dışıdır."
+      },
+      "en": {
+        "summary": "An MCP server for the DEV Community (Forem) API with tools for articles, comments, tags and reading lists.",
+        "description": "MCP server for the DEV Community (Forem) API. Tools for articles, comments, users, tags, organizations, followers and reading lists, with a retrying, rate-limit-aware client. TypeScript with Zod and Vitest, published on npm as @furkankoykiran/devto-mcp."
+      }
+    },
+    {
+      "slug": "telegram-wallet-p2p-sdk",
+      "name": "telegram-wallet-p2p-sdk",
+      "repo": "furkankoykiran/telegram-wallet-p2p-sdk",
+      "url": "https://github.com/furkankoykiran/telegram-wallet-p2p-sdk",
+      "links": {
+        "package": "https://www.npmjs.com/package/@furkankoykiran/telegram-wallet-p2p-mcp"
+      },
+      "stars": 7,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "telegram",
+        "telegram-wallet",
+        "p2p",
+        "sdk",
+        "python",
+        "typescript",
+        "nodejs",
+        "aiohttp",
+        "pydantic",
+        "mcp"
+      ],
+      "category": "trading",
+      "featured": true,
+      "featured_rank": 5,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-02-24",
+      "pushed": "2026-03-06",
+      "tr": {
+        "summary": "Telegram Wallet P2P piyasası için Python, Node.js ve MCP istemcileri; ilanlar, en iyi fiyat ve spread analizi.",
+        "description": "Telegram Wallet P2P piyasası için resmi olmayan, salt okunur çok dilli SDK monoreposu: Python (aiohttp, Pydantic) ve Node.js istemcileri ile P2P ilanları, piyasa özeti ve en iyi fiyat araçlarını sunan bir MCP sunucusu içerir. Spread ve likidite analitiği sağlar."
+      },
+      "en": {
+        "summary": "Python, Node.js and MCP clients for the Telegram Wallet P2P market: listings, best prices and spread analytics.",
+        "description": "Unofficial, read-only SDK monorepo for the Telegram Wallet P2P market: async Python client (aiohttp, Pydantic), Node.js client and an MCP server exposing listings, market summaries, best prices, spread and liquidity analytics. Published on PyPI and npm."
+      }
+    },
+    {
+      "slug": "awesome-trending-repos",
+      "name": "awesome-trending-repos",
+      "repo": "furkankoykiran/awesome-trending-repos",
+      "url": "https://github.com/furkankoykiran/awesome-trending-repos",
+      "links": {
+        "live": "https://furkankoykiran.com.tr/awesome-trending-repos/"
+      },
+      "stars": 23,
+      "language": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Axios",
+        "Cheerio",
+        "Framer Motion",
+        "Lucide",
+        "React",
+        "Tailwind CSS",
+        "Vite"
+      ],
+      "topics": [
+        "awesome",
+        "awesome-list",
+        "github-trending",
+        "trending-repositories",
+        "curated-list",
+        "open-source",
+        "github-actions",
+        "automation",
+        "react",
+        "vite"
+      ],
+      "category": "devtools",
+      "featured": true,
+      "featured_rank": 6,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-03-17",
+      "pushed": "2026-10-23",
+      "tr": {
+        "summary": "GitHub'da trend olan depoları her gün otomatik toplayan liste ve canlı pano. Tamamen GitHub Actions ile çalışır.",
+        "description": "GitHub'da trend olan depoların günlük güncellenen, otomatik derlenen bir listesini sunan bir web uygulaması. Node.js betikleri GitHub trending sayfasını ve Search API'sini kazıyarak anlık görüntüleri saklar; React + Vite + Tailwind ile yapılmış bir panoda trend görselleştirmeleri, dil grupları ve tarihsel karşılaştırma gösterilir. GitHub Actions ile her gün yenilenir."
+      },
+      "en": {
+        "summary": "An automatically curated daily list of trending GitHub repositories with a live dashboard, run entirely on GitHub Actions.",
+        "description": "Daily-updated, automatically curated list of trending GitHub repositories. Node.js scripts collect GitHub trending and Search API snapshots; a React + Vite + Tailwind dashboard shows rising stars, language breakdowns and day-over-day changes. Refreshed by GitHub Actions and served on GitHub Pages."
+      }
+    },
+    {
+      "slug": "earthquakesim",
+      "name": "EarthquakeSim",
+      "repo": "furkankoykiran/EarthquakeSim",
+      "url": "https://github.com/furkankoykiran/EarthquakeSim",
+      "links": {
+        "live": "https://furkankoykiran.com.tr/EarthquakeSim/"
+      },
+      "stars": 0,
+      "language": "JavaScript",
+      "tags": [
+        "JavaScript",
+        "Docker",
+        "Docker Compose",
+        "Three.js",
+        "Vite"
+      ],
+      "topics": [
+        "threejs",
+        "webgl",
+        "3d",
+        "simulation",
+        "earthquake",
+        "earthquake-simulation",
+        "emergency-training",
+        "disaster-preparedness",
+        "safety-training",
+        "serious-games"
+      ],
+      "category": "web",
+      "featured": true,
+      "featured_rank": 7,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-03-29",
+      "pushed": "2026-03-29",
+      "tr": {
+        "summary": "Tarayıcıda çalışan 3B deprem acil durum eğitim simülatörü; artçı sarsıntılar, puanlama ve CSV rapor.",
+        "description": "Three.js ve Vite ile geliştirilmiş, ofis ortamında web tabanlı 3B deprem acil durum eğitim simülatörü; sarsıntı ve artçı şoklar, nesne devrilmesi, siper alma etkileşimi, puanlama ve CSV rapor dışa aktarımı içerir. GitHub Pages ve Docker ile yayınlanır."
+      },
+      "en": {
+        "summary": "A browser-based 3D earthquake emergency training simulator with aftershocks, scoring and CSV reports.",
+        "description": "Web-based 3D earthquake emergency training simulator built with Three.js and Vite. Trains drop-cover-hold behaviour in an office scene with main shock and aftershocks, falling objects, scoring and CSV report export. Runs in the browser via GitHub Pages or Docker."
+      }
+    },
+    {
+      "slug": "ai-face-detector",
+      "name": "ai-face-detector",
+      "repo": "furkankoykiran/ai-face-detector",
+      "url": "https://github.com/furkankoykiran/ai-face-detector",
+      "links": {
+        "model": "https://www.kaggle.com/models/furkankoykiran/ai-face-detector-mobilenetv2/"
+      },
+      "stars": 5,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Jupyter Notebook",
+        "Matplotlib",
+        "Pillow",
+        "Poetry",
+        "PyTorch",
+        "Uvicorn"
+      ],
+      "topics": [
+        "deepfake-detection",
+        "ai-generated-image-detection",
+        "computer-vision",
+        "deep-learning",
+        "pytorch",
+        "mobilenetv2",
+        "transfer-learning",
+        "image-classification",
+        "fastapi",
+        "python"
+      ],
+      "category": "data",
+      "featured": true,
+      "featured_rank": 8,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-03-07",
+      "pushed": "2026-03-07",
+      "tr": {
+        "summary": "Yapay zekâ ile üretilmiş yüzleri MobileNetV2 transfer öğrenmesiyle ayırt eden model; FastAPI arayüzü ve Kaggle'da yayımlanmış ağırlıklar.",
+        "description": "Yüz görsellerinin gerçek mi yapay zekâ üretimi mi olduğunu MobileNetV2 transfer öğrenmesiyle sınıflandıran PyTorch projesi; FastAPI REST API, sürükle-bırak web arayüzü ve Colab/Kaggle uyumlu eğitim betiği içerir. Model Kaggle'da yayınlanmıştır."
+      },
+      "en": {
+        "summary": "A MobileNetV2 transfer-learning model that tells AI-generated faces from real ones, with a FastAPI service and weights on Kaggle.",
+        "description": "Detects AI-generated faces (GAN, diffusion) with a MobileNetV2 transfer-learning classifier in PyTorch, about 95% accuracy on the 140k real-vs-fake faces dataset. Includes a FastAPI REST API, drag-and-drop web UI and a Colab/Kaggle training script; the model is published on Kaggle."
+      }
+    },
+    {
+      "slug": "whop-mcp",
+      "name": "whop-mcp",
+      "repo": "furkankoykiran/whop-mcp",
+      "url": "https://github.com/furkankoykiran/whop-mcp",
+      "links": {
+        "package": "https://www.npmjs.com/package/@furkankoykiran/whop-mcp"
+      },
+      "stars": 6,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "MCP SDK",
+        "Zod"
+      ],
+      "topics": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "whop",
+        "payments",
+        "memberships",
+        "ecommerce",
+        "api-integration",
+        "ai-agents",
+        "claude"
+      ],
+      "category": "mcp",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-03-05",
+      "pushed": "2026-03-06",
+      "tr": {
+        "summary": "Whop şirket API'si için MCP sunucusu: ödemeler, üyelikler, ürünler ve promosyon kodları.",
+        "description": "Whop.com Company API için TypeScript MCP sunucusu; ödemeler, üyelikler, ürünler, promosyon kodları, affiliate'ler ve kullanıcı yorumlarını yönetme araçları sunar, yeniden deneme ve hata yönetimi içerir. npm ve GitHub Packages'ta yayınlanır."
+      },
+      "en": {
+        "summary": "An MCP server for the Whop Company API: payments, memberships, products and promo codes.",
+        "description": "MCP server for the Whop Company API. Lets AI assistants manage payments, memberships, products, promo codes, affiliates and reviews in natural language, with retries and structured error handling. TypeScript with Zod, published on npm and GitHub Packages."
+      }
+    },
+    {
+      "slug": "memoryze",
+      "name": "Memoryze",
+      "repo": "furkankoykiran/Memoryze",
+      "url": "https://github.com/furkankoykiran/Memoryze",
+      "links": {
+        "live": "https://furkankoykiran.com.tr/Memoryze/"
+      },
+      "stars": 3,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "ESLint",
+        "Framer Motion",
+        "Lucide",
+        "React",
+        "Supabase",
+        "Tailwind CSS",
+        "Vite"
+      ],
+      "topics": [
+        "spaced-repetition",
+        "flashcards",
+        "sm2",
+        "learning",
+        "education",
+        "react",
+        "typescript",
+        "vite",
+        "supabase",
+        "tailwindcss"
+      ],
+      "category": "web",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-02-05",
+      "pushed": "2026-02-05",
+      "tr": {
+        "summary": "SM-2 algoritmasıyla çalışan aralıklı tekrar (flashcard) uygulaması; Supabase ile senkron, Türkçe ve İngilizce.",
+        "description": "SM-2 algoritmasına dayalı aralıklı tekrar (flashcard) öğrenme uygulaması; React + TypeScript + Vite ön yüzü, Supabase kimlik doğrulama/veritabanı, deste yönetimi, 3B kart çevirmeli tekrar oturumu ve Türkçe/İngilizce yerelleştirme içerir. GitHub Pages'te yayınlanır."
+      },
+      "en": {
+        "summary": "An SM-2 spaced repetition flashcard app synced with Supabase, in Turkish and English.",
+        "description": "Spaced repetition flashcard app based on the SM-2 algorithm. React, TypeScript and Vite frontend with Supabase auth and database, deck management, 3D card-flip review sessions and Turkish/English localisation. Deployed on GitHub Pages."
+      }
+    },
+    {
+      "slug": "speedapi_lib",
+      "name": "speedapi_lib",
+      "repo": "furkankoykiran/speedapi_lib",
+      "url": "https://github.com/furkankoykiran/speedapi_lib",
+      "links": {},
+      "stars": 2,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "Pydantic",
+        "Ruff",
+        "httpx",
+        "mypy",
+        "pytest",
+        "setuptools"
+      ],
+      "topics": [
+        "python",
+        "sdk",
+        "api-client",
+        "bitcoin",
+        "lightning-network",
+        "payments",
+        "payment-gateway",
+        "httpx",
+        "pydantic",
+        "asyncio"
+      ],
+      "category": "trading",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2024-08-22",
+      "pushed": "2026-03-05",
+      "tr": {
+        "summary": "Speed Merchant API (Bitcoin/Lightning ödemeleri) için tipli, senkron ve asenkron Python SDK'sı.",
+        "description": "Speed Merchant API (Bitcoin/Lightning ödemeleri) için Python SDK'sı; httpx tabanlı senkron ve asenkron istemciler, Pydantic v2 modelleri, checkout session, fatura, ödeme isteği, bakiye kaynakları ve webhook imza doğrulaması sunar. PyPI'da speedapi-lib adıyla yayınlanır (v2.0.2)."
+      },
+      "en": {
+        "summary": "A typed sync and async Python SDK for the Speed Merchant API (Bitcoin and Lightning payments).",
+        "description": "Python SDK for the Speed Merchant API (Bitcoin and Lightning payments). Sync and async httpx clients, Pydantic v2 models, checkout sessions, invoices, payment requests, balances and webhook signature verification. Typed with mypy, tested with pytest, published on PyPI as speedapi-lib."
+      }
+    },
+    {
+      "slug": "upwork-mcp",
+      "name": "upwork-mcp",
+      "repo": "furkankoykiran/upwork-mcp",
+      "url": "https://github.com/furkankoykiran/upwork-mcp",
+      "links": {
+        "package": "https://www.npmjs.com/package/@furkankoykiran/upwork-mcp"
+      },
+      "stars": 2,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "ESLint",
+        "MCP SDK",
+        "Prettier",
+        "Vitest"
+      ],
+      "topics": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "upwork",
+        "graphql",
+        "oauth2",
+        "freelancing",
+        "job-search",
+        "ai-agents",
+        "claude"
+      ],
+      "category": "mcp",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-03-31",
+      "pushed": "2026-10-19",
+      "tr": {
+        "summary": "Upwork GraphQL API'sini MCP araçları olarak sunan sunucu: iş arama, teklif ve sözleşme takibi.",
+        "description": "Upwork'ün GraphQL API'sine OAuth 2.0 ile bağlanan, iş arama, teklif (proposal) yönetimi, kaydedilmiş işler, profil takibi, sözleşme ve zaman raporları ile dahili hız sınırlamayı tool olarak sunan bir Model Context Protocol (MCP) sunucusu. TypeScript ile yazılmış ve npm'de @furkankoykiran/upwork-mcp olarak yayımlanmıştır."
+      },
+      "en": {
+        "summary": "An MCP server that exposes Upwork's GraphQL API as tools: job search, proposals and contract tracking.",
+        "description": "MCP server for Upwork's GraphQL API. Lets Claude and other MCP clients search jobs, manage proposals and saved jobs, track profile, contracts and time reports over OAuth 2.0 with built-in rate limiting. TypeScript, published on npm as @furkankoykiran/upwork-mcp."
+      }
+    },
+    {
+      "slug": "hues-and-cues",
+      "name": "hues-and-cues",
+      "repo": "furkankoykiran/hues-and-cues",
+      "url": "https://github.com/furkankoykiran/hues-and-cues",
+      "links": {
+        "live": "https://furkankoykiran.com.tr/hues-and-cues/"
+      },
+      "stars": 1,
+      "language": "CSS",
+      "tags": [
+        "CSS"
+      ],
+      "topics": [
+        "browser-game",
+        "party-game",
+        "board-game",
+        "colors",
+        "html",
+        "css",
+        "javascript",
+        "vanilla-js",
+        "i18n",
+        "github-pages"
+      ],
+      "category": "web",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2025-04-19",
+      "pushed": "2025-07-31",
+      "tr": {
+        "summary": "Renk tahmin oyunu Hues and Cues'un tarayıcıda oynanan uyarlaması; Türkçe ve İngilizce.",
+        "description": "Popüler renk tahmin kutu oyunu Hues and Cues'un tarayıcıda oynanabilen, İngilizce ve Türkçe destekli saf HTML/CSS/JavaScript uyarlaması."
+      },
+      "en": {
+        "summary": "A browser adaptation of the colour-guessing party game Hues and Cues, in English and Turkish.",
+        "description": "Browser version of the colour-guessing party game Hues and Cues: one player gives a one-word clue, the others guess the matching colour on the board. Plain HTML, CSS and JavaScript with English and Turkish localisation, hosted on GitHub Pages."
+      }
+    },
+    {
+      "slug": "coderlegion-mcp",
+      "name": "coderlegion-mcp",
+      "repo": "furkankoykiran/coderlegion-mcp",
+      "url": "https://github.com/furkankoykiran/coderlegion-mcp",
+      "links": {},
+      "stars": 1,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "Cheerio",
+        "MCP SDK",
+        "Zod"
+      ],
+      "topics": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "coderlegion",
+        "developer-community",
+        "content-management",
+        "ai-agents",
+        "claude",
+        "cursor",
+        "typescript"
+      ],
+      "category": "mcp",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-04-04",
+      "pushed": "2026-04-04",
+      "tr": {
+        "summary": "CoderLegion topluluğu için MCP sunucusu; yapay zekâ ajanlarından gönderi, arama ve etkileşim.",
+        "description": "CoderLegion geliştirici topluluğu platformu için TypeScript MCP sunucusu; oturum çerezleriyle gönderi oluşturma/düzenleme/silme, profil düzenleme, arama ve sosyal etkileşim (tepki, bildirim, akış) gibi 13 araç sunar. npm ve GitHub Packages'ta yayınlanır."
+      },
+      "en": {
+        "summary": "An MCP server for the CoderLegion community: posting, search and engagement from AI agents.",
+        "description": "MCP server for the CoderLegion developer community. Gives Claude, Cursor and Cline 13 tools to create, edit and delete posts, search content, update the profile and handle reactions, notifications and feeds. TypeScript with Zod, published on npm and GitHub Packages."
+      }
+    },
+    {
+      "slug": "codelyze",
+      "name": "codelyze",
+      "repo": "furkankoykiran/codelyze",
+      "url": "https://github.com/furkankoykiran/codelyze",
+      "links": {},
+      "stars": 1,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "competitive-programming",
+        "leetcode",
+        "codeforces",
+        "dashboard",
+        "analytics",
+        "fastapi",
+        "mongodb",
+        "nextjs",
+        "react",
+        "tailwindcss"
+      ],
+      "category": "web",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-02-05",
+      "pushed": "2026-02-05",
+      "tr": {
+        "summary": "LeetCode ve Codeforces istatistiklerini tek panelde toplayan rekabetçi programlama analiz uygulaması.",
+        "description": "LeetCode, Codeforces ve GeeksforGeeks profillerinden istatistik toplayıp tek bir panelde gösteren rekabetçi programlama analiz uygulaması; FastAPI + MongoDB arka uç ve Next.js ön yüzden oluşur, systemd servisiyle dağıtılır."
+      },
+      "en": {
+        "summary": "A competitive programming dashboard that brings LeetCode and Codeforces stats together.",
+        "description": "Competitive programming profile analyzer: collects stats from LeetCode and Codeforces (GeeksforGeeks support limited by API changes) into one dashboard with progress charts. FastAPI and MongoDB backend, Next.js 14 and Tailwind frontend, deployed as a systemd service."
+      }
+    },
+    {
+      "slug": "wavelength",
+      "name": "wavelength",
+      "repo": "furkankoykiran/wavelength",
+      "url": "https://github.com/furkankoykiran/wavelength",
+      "links": {
+        "live": "https://furkankoykiran.com.tr/wavelength/"
+      },
+      "stars": 1,
+      "language": "JavaScript",
+      "tags": [
+        "JavaScript"
+      ],
+      "topics": [
+        "browser-game",
+        "party-game",
+        "board-game",
+        "html",
+        "css",
+        "javascript",
+        "vanilla-js",
+        "i18n",
+        "dark-mode",
+        "github-pages"
+      ],
+      "category": "web",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2025-04-18",
+      "pushed": "2025-04-18",
+      "tr": {
+        "summary": "Wavelength parti oyununun tarayıcı uyarlaması; 10 dil, açık/koyu tema ve takım puanlaması.",
+        "description": "Popüler Wavelength parti oyununun tarayıcıda oynanan, framework'süz HTML/CSS/JavaScript ile yazılmış dijital uyarlamasıdır. 10 dil desteği, açık/koyu tema ve takım bazlı puanlama içerir."
+      },
+      "en": {
+        "summary": "A browser adaptation of the Wavelength party game with 10 languages, light/dark theme and team scoring.",
+        "description": "Browser version of the party game Wavelength: a team captain gives a clue and teammates guess where a hidden target sits on a spectrum. Framework-free HTML, CSS and JavaScript with 10 languages, light/dark theme and team scoring, hosted on GitHub Pages."
+      }
+    },
+    {
+      "slug": "claude-gemini-gateway",
+      "name": "claude-gemini-gateway",
+      "repo": "furkankoykiran/claude-gemini-gateway",
+      "url": "https://github.com/furkankoykiran/claude-gemini-gateway",
+      "links": {},
+      "stars": 0,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ],
+      "topics": [
+        "claude-code",
+        "gemini",
+        "vertex-ai",
+        "google-ai",
+        "anthropic",
+        "anthropic-messages",
+        "llm-gateway",
+        "gateway",
+        "proxy",
+        "typescript"
+      ],
+      "category": "devtools",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-10-09",
+      "pushed": "2026-10-12",
+      "tr": {
+        "summary": "Claude Code'u Gemini API, Vertex AI veya AGY CLI ile çalıştıran Messages uyumlu geçit.",
+        "description": "Claude Code için Anthropic Messages uyumlu Google çıkarım adaptörleri: yerel AGY CLI, Gemini Developer API veya Vertex HTTP arasında açıkça seçim yapılarak kullanılabilen bir ağ geçidi. Tool, MCP ve izinlerin sahipliği Claude Code'da kalır. TypeScript/Bun ile yazılmış, gateway ailesinin bir parçasıdır."
+      },
+      "en": {
+        "summary": "A Messages-compatible gateway that runs Claude Code on the Gemini API, Vertex AI or the AGY CLI.",
+        "description": "Anthropic Messages-compatible gateway for Claude Code backed by Google models: choose the local AGY CLI, the Gemini Developer API or Vertex AI. Claude Code keeps ownership of tools, MCP and permissions. TypeScript on Bun."
+      }
+    },
+    {
+      "slug": "fcode",
+      "name": "fcode",
+      "repo": "furkankoykiran/fcode",
+      "url": "https://github.com/furkankoykiran/fcode",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "coding-agent",
+        "autonomous-agents",
+        "agent-harness",
+        "ai-agents",
+        "developer-tools",
+        "software-engineering",
+        "llm",
+        "terminal-ui"
+      ],
+      "category": "devtools",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "AGPL-3.0",
+      "created": "2026-10-12",
+      "pushed": "2026-10-12",
+      "tr": {
+        "summary": "Niyeti alıp belirsizliği netleştiren ve her değişikliği testlerle doğrulayan otonom geliştirme harness'ı tasarımı. Erken aşama.",
+        "description": "Yüksek seviye insan niyetini alıp, belirsizlikleri gidererek ve her değişikliği otomatik test paketleriyle doğrulayarak yazılım değişikliği üreten otonom bir yazılım geliştirme harness'ı. Şu anda esas olarak marka kimliği, yönetişim, CI ve dokümantasyon temelinden oluşan erken aşamalı bir depo."
+      },
+      "en": {
+        "summary": "Design for an autonomous development harness that clarifies intent and verifies every change with tests. Early stage.",
+        "description": "Early-stage (Phase 0) design for an autonomous software development harness: take high-level intent, resolve ambiguity before editing, and verify every change with automated tests before human review. Currently brand, governance, CI and design documents; no runnable harness yet."
+      }
+    },
+    {
+      "slug": "claude-codex-gateway",
+      "name": "claude-codex-gateway",
+      "repo": "furkankoykiran/claude-codex-gateway",
+      "url": "https://github.com/furkankoykiran/claude-codex-gateway",
+      "links": {},
+      "stars": 0,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ],
+      "topics": [
+        "claude-code",
+        "codex",
+        "openai",
+        "anthropic",
+        "anthropic-messages",
+        "llm-gateway",
+        "gateway",
+        "proxy",
+        "json-rpc",
+        "typescript"
+      ],
+      "category": "devtools",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-10-09",
+      "pushed": "2026-10-13",
+      "tr": {
+        "summary": "Claude Code'un Codex ile çıkarım yapmasını sağlayan Messages uyumlu geçit; araçlar ve izinler Claude Code'da kalır.",
+        "description": "Claude Code için Anthropic Messages uyumlu bir çıkarım (inference) ağ geçidi: yerel bir Messages adaptörünü resmi Codex app-server JSON-RPC'ye bağlar. Tool, MCP ve izinlerin sahipliği Claude Code'da kalır, sağlayıcı yalnızca çıkarım sunar. TypeScript/Bun ile yazılmış, gateway ailesinin bir parçasıdır."
+      },
+      "en": {
+        "summary": "A Messages-compatible gateway that lets Claude Code run on Codex inference while tools and permissions stay in Claude Code.",
+        "description": "Anthropic Messages-compatible gateway that lets Claude Code use Codex for inference through the official Codex app-server JSON-RPC. Claude Code keeps ownership of tools, MCP and permissions; the provider only serves completions. TypeScript on Bun."
+      }
+    },
+    {
+      "slug": "fsecurity",
+      "name": "fsecurity",
+      "repo": "furkankoykiran/fsecurity",
+      "url": "https://github.com/furkankoykiran/fsecurity",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "cybersecurity",
+        "security-tools",
+        "ai-agents",
+        "autonomous-agents",
+        "agent-harness",
+        "security-assessment",
+        "bug-bounty",
+        "penetration-testing",
+        "python",
+        "terminal-ui"
+      ],
+      "category": "devtools",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "AGPL-3.0",
+      "created": "2026-10-13",
+      "pushed": "2026-10-13",
+      "tr": {
+        "summary": "Yetkili güvenlik testleri için yapay zekâ ajanı çalışma alanı; kapsamı insan belirler, harness uygular. Şu an tasarım aşamasında.",
+        "description": "Otonom bir siber güvenlik uzman agent'ı için çalışma alanı ve araç takımı; insan operatör hedefleri, yetkilendirme ve kapsam sınırlarını tanımlar, uzman agent kendi iş akışını belirler, harness ise paket gönderilmeden önce kapsamı zorunlu kılar. Şu anda esas olarak marka kimliği, yönetişim (governance), CI ve dokümantasyon temelinden (assets/, docs/, .claude/) oluşan erken aşamalı bir Python deposu."
+      },
+      "en": {
+        "summary": "An AI agent workspace for authorized security testing where the human sets the scope and the harness enforces it. Currently in the design phase.",
+        "description": "Early-stage (Phase 0) AI-native cybersecurity workspace for authorized security assessment. The human sets objectives and scope, a specialist agent plans the workflow, and the harness is designed to enforce scope before any traffic is sent. Currently brand, governance, CI and design docs."
+      }
+    },
+    {
+      "slug": "xrlabllm",
+      "name": "XRLabLLM",
+      "repo": "furkankoykiran/XRLabLLM",
+      "url": "https://github.com/furkankoykiran/XRLabLLM",
+      "links": {
+        "live": "https://furkankoykiran.com.tr/XRLabLLM/"
+      },
+      "stars": 0,
+      "language": "HTML",
+      "tags": [
+        "HTML"
+      ],
+      "topics": [
+        "llm",
+        "generative-ai",
+        "presentation",
+        "slides",
+        "html",
+        "tailwindcss",
+        "turkish",
+        "github-pages"
+      ],
+      "category": "data",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "",
+      "created": "2025-05-12",
+      "pushed": "2025-05-13",
+      "tr": {
+        "summary": "Büyük dil modellerinin kullanımı ve entegrasyonu üzerine Türkçe tek sayfalık sunum.",
+        "description": "Yapay zeka kullanımı ve entegrasyonu (LLM'ler ve ilgili araçlar) konulu, Tailwind ile hazırlanmış tek sayfalık Türkçe HTML sunum."
+      },
+      "en": {
+        "summary": "A single-page Turkish presentation on using and integrating large language models.",
+        "description": "Single-page Turkish slide deck on using and integrating large language models and related AI tools, built with HTML and Tailwind CSS and hosted on GitHub Pages."
+      }
+    },
+    {
+      "slug": "prospectforge",
+      "name": "ProspectForge",
+      "repo": "furkankoykiran/ProspectForge",
+      "url": "https://github.com/furkankoykiran/ProspectForge",
+      "links": {},
+      "stars": 0,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "ESLint",
+        "Nuxt",
+        "SQLite",
+        "Tailwind CSS",
+        "Vitest",
+        "Vue"
+      ],
+      "topics": [
+        "nuxt",
+        "vue",
+        "typescript",
+        "sqlite",
+        "google-places-api",
+        "google-maps",
+        "gemini",
+        "generative-ai",
+        "lead-generation",
+        "sales"
+      ],
+      "category": "web",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-08-11",
+      "pushed": "2026-10-14",
+      "tr": {
+        "summary": "Haritadan seçilen bölgedeki işletmeleri bulup her biri için Gemini ile ürün fikri ve satış konuşması hazırlayan yerel çalışan araç.",
+        "description": "Harita üzerinden seçilen bir bölgedeki yerel işletmeleri Google Places'ten çeken, her işletmenin ihtiyaç duyabileceği yazılım/ürün fikirlerini ve satış konuşmasını Gemini ile üreten, tamamen yerel çalışan AI destekli bir satış ön-hazırlık aracı. Nuxt 4 + TypeScript + Vue ile yazılmış, verileri yerel bir SQLite dosyasında saklar."
+      },
+      "en": {
+        "summary": "A local-first tool that finds businesses in a chosen map area and drafts product ideas and a sales pitch for each with Gemini.",
+        "description": "Local-first, AI-assisted prospecting tool for small businesses. Pick an area on a map, pull local businesses from Google Places, and generate product ideas and a sales pitch per business with Gemini. Nuxt 4, Vue and TypeScript with a local SQLite database."
+      }
+    },
+    {
+      "slug": "contextify-cli",
+      "name": "contextify-cli",
+      "repo": "furkankoykiran/contextify-cli",
+      "url": "https://github.com/furkankoykiran/contextify-cli",
+      "links": {
+        "live": "https://contextify.live"
+      },
+      "stars": 0,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "ESLint",
+        "Prettier",
+        "Vitest",
+        "pnpm"
+      ],
+      "topics": [
+        "contextify",
+        "claude-code",
+        "cli",
+        "ai-agents",
+        "context-engineering",
+        "prompt-engineering",
+        "memory",
+        "hooks",
+        "transcripts",
+        "llm"
+      ],
+      "category": "devtools",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-05-17",
+      "pushed": "2026-06-08",
+      "tr": {
+        "summary": "Claude Code oturumlarını yakalayıp proje hafızasıyla zenginleştirilmiş prompt'lar üreten açık kaynak CLI.",
+        "description": "Contextify'ın açık kaynak (MIT) CLI'ı; Claude Code oturumlarını (SessionStart/Stop/SessionEnd hook'ları) yakalar, transkriptleri hafıza pipeline'ına gönderir ve taslakları proje hafızasıyla zenginleştirilmiş Claude'a hazır prompt'lara derler. TypeScript/Node ile yazılmış, npm'de yayımlanmıştır; backend kapalı kaynaktır."
+      },
+      "en": {
+        "summary": "An open-source CLI that captures Claude Code sessions and compiles prompts enriched with project memory.",
+        "description": "Open-source CLI for Contextify: hooks into Claude Code sessions (SessionStart, Stop, SessionEnd), ships transcripts to a memory pipeline and compiles drafts into Claude-ready prompts enriched with project memory. TypeScript, Node 20+, MIT, published on npm."
+      }
+    },
+    {
+      "slug": "legit-wallet-stealer",
+      "name": "Legit-Wallet-Stealer",
+      "repo": "furkankoykiran/Legit-Wallet-Stealer",
+      "url": "https://github.com/furkankoykiran/Legit-Wallet-Stealer",
+      "links": {},
+      "stars": 9,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "CCXT",
+        "Jupyter Notebook",
+        "NumPy",
+        "pandas",
+        "python-telegram-bot",
+        "requests",
+        "web3.py"
+      ],
+      "topics": [
+        "python",
+        "web3py",
+        "ethereum",
+        "blockchain",
+        "jupyter-notebook",
+        "telegram-bot",
+        "learning-project",
+        "early-work"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "MIT",
+      "created": "2023-02-12",
+      "pushed": "2025-03-16",
+      "tr": {
+        "summary": "2023'ten web3.py ile blokzincir sorgularını öğrenmek için yapılmış erken dönem bir proje; bakımı yapılmıyor.",
+        "description": "Rastgele kripto cüzdanları üreterek bakiyelerini kontrol eden ve sonuçları Telegram üzerinden bildiren Python tabanlı bir araçtır."
+      },
+      "en": {
+        "summary": "An early 2023 project for learning blockchain queries with web3.py; no longer maintained.",
+        "description": "Early (2023) Python learning project exploring wallet generation and blockchain balance queries with web3.py, with Telegram notifications. Kept public as an archive of early work; unmaintained."
+      }
+    },
+    {
+      "slug": "orekas",
+      "name": "Orekas",
+      "repo": "furkankoykiran/Orekas",
+      "url": "https://github.com/furkankoykiran/Orekas",
+      "links": {},
+      "stars": 1,
+      "language": "Java",
+      "tags": [
+        "Java",
+        "Gradle"
+      ],
+      "topics": [
+        "minecraft",
+        "minecraft-mod",
+        "fabric",
+        "fabricmc",
+        "meteor-client",
+        "meteor-addon",
+        "java",
+        "gradle",
+        "wasm",
+        "chicory"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "GPL-3.0",
+      "created": "2026-04-24",
+      "pushed": "2026-08-01",
+      "tr": {
+        "summary": "Minecraft için Meteor Client eklentisi; Fabric modlama ve JVM içinde WASM çalıştırmayı öğrenmek için yapılmış hobi projesi.",
+        "description": "Meteor Client için bir cevher-damarı ESP eklentisi (Minecraft, Fabric/Java). orefinder.gg'nin süreç içi WASM modelinden gelen damar merkezlerini canlı dünyaya karşı doğrular ve AntiXray sunucuları için tahmin kutusuna geri döner. Ayrıca DonutSMP için ekonomi/güvenlik otomasyon modülleri (OrderSniper, AutoSell, PlayerDetection, AdminList) içerir."
+      },
+      "en": {
+        "summary": "A Meteor Client add-on for Minecraft, built as a hobby project to learn Fabric modding and running WASM on the JVM.",
+        "description": "Meteor Client add-on for Minecraft (Fabric, Java 21) that visualises predicted ore veins using orefinder.gg's WASM model, validated against the loaded world, plus optional server-specific utility modules. Hobby project for learning Fabric modding and running WASM in-process on the JVM."
+      }
+    },
+    {
+      "slug": "telegram-channel-replicator",
+      "name": "Telegram-Channel-Replicator",
+      "repo": "furkankoykiran/Telegram-Channel-Replicator",
+      "url": "https://github.com/furkankoykiran/Telegram-Channel-Replicator",
+      "links": {},
+      "stars": 1,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "Pyrogram",
+        "requests"
+      ],
+      "topics": [
+        "telegram",
+        "telegram-bot",
+        "pyrogram",
+        "python",
+        "automation",
+        "channel-forwarding",
+        "early-work"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2023-08-12",
+      "pushed": "2023-08-12",
+      "tr": {
+        "summary": "Bir Telegram kanalındaki gönderileri koşullara göre birden çok kanala ileten Pyrogram botu.",
+        "description": "Pyrogram ile bir Telegram kanalındaki metin ve fotoğraf mesajlarını belirlenen koşullara göre birden fazla hedef kanala ileten (çoğaltan) bot."
+      },
+      "en": {
+        "summary": "A Pyrogram bot that forwards posts from one Telegram channel to several others by rule.",
+        "description": "Telegram bot built with Pyrogram that forwards text and photo posts from one source channel to several target channels based on configurable conditions. Early project."
+      }
+    },
+    {
+      "slug": "siparisuretimplanlama",
+      "name": "SiparisUretimPlanlama",
+      "repo": "furkankoykiran/SiparisUretimPlanlama",
+      "url": "https://github.com/furkankoykiran/SiparisUretimPlanlama",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "python",
+        "sqlite",
+        "oop",
+        "object-oriented-programming",
+        "cli",
+        "university-project",
+        "order-management",
+        "turkish"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2024-10-31",
+      "pushed": "2025-01-02",
+      "tr": {
+        "summary": "Nesne tabanlı programlama dersi projesi: Python ve SQLite ile ürün, çalışan ve sipariş yönetimi.",
+        "description": "Manisa Celal Bayar Üniversitesi Nesne Tabanlı Programlama dersi için Python ve SQLite ile geliştirilmiş, komut satırından çalışan şirket yönetim sistemidir. Ürün, çalışan ve sipariş yönetimi ile grafikli raporlama içerir."
+      },
+      "en": {
+        "summary": "An OOP course project: product, employee and order management in Python and SQLite.",
+        "description": "University object-oriented programming project (Manisa Celal Bayar University): command-line company management system in Python with SQLite, covering products, employees and orders with charted reports."
+      }
+    },
+    {
+      "slug": "flash-loan-arbitrage",
+      "name": "Flash-Loan-Arbitrage",
+      "repo": "furkankoykiran/Flash-Loan-Arbitrage",
+      "url": "https://github.com/furkankoykiran/Flash-Loan-Arbitrage",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python",
+        "Poetry",
+        "aiohttp",
+        "requests",
+        "setuptools",
+        "web3.py"
+      ],
+      "topics": [
+        "python",
+        "web3py",
+        "ethereum",
+        "defi",
+        "dex",
+        "arbitrage",
+        "aiohttp",
+        "poetry",
+        "telegram-bot",
+        "learning-project"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2025-02-13",
+      "pushed": "2025-03-02",
+      "tr": {
+        "summary": "DeFi mekaniklerini öğrenmek için yazılmış, Ethereum DEX fiyatlarını izleyen erken dönem Python projesi.",
+        "description": "Ethereum üzerindeki merkeziyetsiz borsalar (DEX) arasındaki arbitraj fırsatlarını izleyen, Telegram bildirimli Python (web3.py) botudur."
+      },
+      "en": {
+        "summary": "An early Python project for learning DeFi mechanics by watching Ethereum DEX prices.",
+        "description": "Early Python (web3.py) learning project around DeFi mechanics: watches Ethereum DEX prices for arbitrage paths and sends Telegram notifications. Unmaintained; kept as an archive of early work."
+      }
+    },
+    {
+      "slug": "kodla-gel",
+      "name": "Kodla-Gel",
+      "repo": "furkankoykiran/Kodla-Gel",
+      "url": "https://github.com/furkankoykiran/Kodla-Gel",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "python",
+        "simulation",
+        "plinko",
+        "university-project",
+        "beginner-project",
+        "turkish"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2023-10-11",
+      "pushed": "2023-10-12",
+      "tr": {
+        "summary": "Kodla-Gel etkinliği ödevleri; şimdilik Python ile Plinko simülasyonu.",
+        "description": "Manisa Celal Bayar Üniversitesi Bilgisayar Programcılığı 'Kodla-Gel' etkinliği ödevlerini barındıran depo; şu an yalnızca Plinko oyununu simüle eden bir Python programı içerir."
+      },
+      "en": {
+        "summary": "Exercises from the Kodla-Gel coding event; currently a Plinko simulation in Python.",
+        "description": "Assignments from the 'Kodla-Gel' coding event at Manisa Celal Bayar University; currently a Python simulation of the Plinko game."
+      }
+    },
+    {
+      "slug": "roblox-2010-collector",
+      "name": "Roblox-2010-Collector",
+      "repo": "furkankoykiran/Roblox-2010-Collector",
+      "url": "https://github.com/furkankoykiran/Roblox-2010-Collector",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "python",
+        "requests",
+        "roblox",
+        "public-api",
+        "telegram-bot",
+        "learning-project",
+        "early-work"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2023-02-03",
+      "pushed": "2023-02-03",
+      "tr": {
+        "summary": "2023'ten, herkese açık Roblox kullanıcı API'sini kullanan erken dönem Python betiği.",
+        "description": "Belirli bir filtreyle 2009-2010 dönemine ait değerli Roblox hesaplarını tarayıp sonuçları Telegram'a gönderen Python botu."
+      },
+      "en": {
+        "summary": "An early 2023 Python script built on the public Roblox users API.",
+        "description": "Early (2023) Python script that reads the public Roblox users API and posts matching profiles to Telegram. Kept as an archive of early work; unmaintained."
+      }
+    },
+    {
+      "slug": "telegram-blacklist-adding-system",
+      "name": "Telegram-Blacklist-Adding-System",
+      "repo": "furkankoykiran/Telegram-Blacklist-Adding-System",
+      "url": "https://github.com/furkankoykiran/Telegram-Blacklist-Adding-System",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "telegram",
+        "telegram-bot",
+        "python-telegram-bot",
+        "python",
+        "rival-regions",
+        "opt-out",
+        "early-work"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2023-02-23",
+      "pushed": "2023-02-23",
+      "tr": {
+        "summary": "Rival Regions oyuncularının bir mesaj botundan çıkmasını sağlayan kara liste Telegram botu.",
+        "description": "Rival Regions oyuncularının @RRMessage botundan mesaj almamak için profillerini kara listeye eklemesini sağlayan Telegram botu; her Telegram hesabı tek profil kaydedebilir ve veriler metin dosyalarında tutulur."
+      },
+      "en": {
+        "summary": "A Telegram bot that lets Rival Regions players opt out of a messaging bot.",
+        "description": "Telegram bot for Rival Regions players to opt out of messages from a companion messaging bot by adding their profile to a blacklist; one profile per Telegram account, stored in text files. Early project."
+      }
+    },
+    {
+      "slug": "telegram-anonymous-chat-bot",
+      "name": "Telegram-Anonymous-Chat-Bot",
+      "repo": "furkankoykiran/Telegram-Anonymous-Chat-Bot",
+      "url": "https://github.com/furkankoykiran/Telegram-Anonymous-Chat-Bot",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "telegram",
+        "telegram-bot",
+        "python-telegram-bot",
+        "python",
+        "anonymous-chat",
+        "early-work"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2023-02-25",
+      "pushed": "2023-02-25",
+      "tr": {
+        "summary": "Gelen mesajları anonim olarak bir Telegram grubuna ileten küçük bot.",
+        "description": "Kendisine gönderilen mesajları belirli bir Telegram grubuna ileten ve kullanıcıya mesajın iletildiğini bildiren basit anonim mesaj botu (python-telegram-bot)."
+      },
+      "en": {
+        "summary": "A small bot that relays messages anonymously to a Telegram group.",
+        "description": "Small python-telegram-bot project that forwards messages it receives to a fixed Telegram group and confirms delivery to the sender, enabling anonymous messages. Early project."
+      }
+    },
+    {
+      "slug": "cbu-rent-a-car",
+      "name": "CBU-Rent-A-Car",
+      "repo": "furkankoykiran/CBU-Rent-A-Car",
+      "url": "https://github.com/furkankoykiran/CBU-Rent-A-Car",
+      "links": {},
+      "stars": 0,
+      "language": "Python",
+      "tags": [
+        "Python"
+      ],
+      "topics": [
+        "python",
+        "oop",
+        "object-oriented-programming",
+        "console-app",
+        "university-project",
+        "car-rental",
+        "turkish"
+      ],
+      "category": "early",
+      "featured": false,
+      "featured_rank": 99,
+      "early": true,
+      "license": "",
+      "created": "2024-05-27",
+      "pushed": "2024-05-27",
+      "tr": {
+        "summary": "Nesne tabanlı programlama dersi için konsol tabanlı araç kiralama uygulaması.",
+        "description": "Celal Bayar Üniversitesi Nesne Tabanlı Programlama dersi için geliştirilmiş, araç ve müşteri sınıflarıyla çalışan konsol tabanlı Python araç kiralama uygulaması."
+      },
+      "en": {
+        "summary": "A console car rental app written for an OOP course.",
+        "description": "University object-oriented programming project (Manisa Celal Bayar University): console car rental application in Python with vehicle and customer classes."
+      }
+    }
+  ]
+}
