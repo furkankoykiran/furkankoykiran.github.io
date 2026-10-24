@@ -7,6 +7,10 @@
 {{- range $i, $p := hugo.Data.projects.projects -}}
   {{- $txt := index $p $lang -}}
   {{- $body := $txt.description | default $txt.summary -}}
+  {{- /* Search titles and snippets: name plus language, and a summary that
+    always says where the code lives. */ -}}
+  {{- $seoTitle := printf (cond (eq $lang "tr") "%s · %s projesi · %s" "%s · %s project by %s") $p.name ($p.language | default "Python") $.Site.Title -}}
+  {{- $desc := printf "%s %s" $txt.summary (cond (eq $lang "tr") "Açık kaynak, kodu GitHub'da." "Open source; the code is on GitHub.") -}}
   {{- $dates := dict -}}
   {{- with $p.created }}{{ $dates = merge $dates (dict "date" (time.AsTime .)) }}{{ end -}}
   {{- with $p.pushed }}{{ $dates = merge $dates (dict "lastmod" (time.AsTime .)) }}{{ end -}}
@@ -18,7 +22,8 @@
     "dates" $dates
     "content" (dict "mediaType" "text/markdown" "value" $body)
     "params" (dict
-      "description" $txt.summary
+      "description" $desc
+      "seoTitle" $seoTitle
       "project" $p
       "categoryLabel" (index $cats $p.category)
     )

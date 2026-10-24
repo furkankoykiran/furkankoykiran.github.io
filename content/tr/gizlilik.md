@@ -1,9 +1,11 @@
 ---
 title: "Gizlilik ve çerezler"
+seoTitle: "Gizlilik ve çerez politikası (KVKK, GDPR) · Furkan Köykıran"
 layout: prose
 description: "furkankoykiran.com.tr gizlilik politikası: hangi verilerin hangi araçlarla, hangi hukuki sebeple işlendiği, çerezler ve KVKK kapsamındaki haklarınız."
 lead: "Bu sitede reklam yok ve kişisel verilerinizi satmıyorum. Ziyaretleri anlamak için analitik araçlar yalnızca izin verirseniz çerez kullanır."
 ogKicker: "Gizlilik"
+ogTitle: "Gizlilik ve çerez politikası"
 lastmod: 2026-10-23
 ---
 
