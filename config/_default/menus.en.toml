@@ -1,0 +1,29 @@
+[[main]]
+  name = "Projects"
+  pageRef = "/projeler"
+  weight = 10
+[[main]]
+  name = "Contributions"
+  pageRef = "/katkilar"
+  weight = 20
+[[main]]
+  name = "Blog"
+  url = "https://blog.furkankoykiran.com.tr/en/"
+  weight = 30
+[[main]]
+  name = "About"
+  pageRef = "/hakkimda"
+  weight = 40
+
+[[footer]]
+  name = "Privacy"
+  pageRef = "/gizlilik"
+  weight = 10
+[[footer]]
+  name = "llms.txt"
+  url = "/en/llms.txt"
+  weight = 20
+[[footer]]
+  name = "Sitemap"
+  url = "/en/sitemap.xml"
+  weight = 30

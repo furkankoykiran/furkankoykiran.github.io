@@ -1,0 +1,74 @@
+baseURL = "https://furkankoykiran.com.tr/"
+title = "Furkan Köykıran"
+# Provides the icon set (assets/icons) and Markdown render hooks; every page
+# template is the site's own (layouts/).
+theme = "blowfish"
+
+# Turkish at the root, English under /en/.
+defaultContentLanguage = "tr"
+defaultContentLanguageInSubdir = false
+
+enableRobotsTXT = true
+# Page lastmod dates come from Git history.
+enableGitInfo = true
+# Descriptions are written explicitly; never fall back to an excerpt.
+summaryLength = 0
+
+# The site has no tags, categories or feeds; the blog provides those. The
+# sitemaps are the site's own output format (sitemapx below).
+disableKinds = ["taxonomy", "term", "rss", "sitemap"]
+
+[imaging]
+  anchor = "Center"
+  resampleFilter = "Lanczos"
+
+[mediaTypes]
+  [mediaTypes."text/markdown"]
+    suffixes = ["md"]
+
+# Plain-text outputs for language models (llms.txt) and a Markdown copy of
+# every page at <url>index.md.
+[outputFormats]
+  [outputFormats.llms]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.llmsfull]
+    mediaType = "text/plain"
+    baseName = "llms-full"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.md]
+    mediaType = "text/markdown"
+    baseName = "index"
+    isPlainText = true
+    rel = "alternate"
+  # One flat sitemap per language instead of Hugo's sitemap index, which would
+  # put the root-level Turkish URLs in /tr/sitemap.xml, outside that file's path
+  # scope. /sitemap.xml lists every page of both languages, /en/sitemap.xml the
+  # English ones.
+  [outputFormats.sitemapx]
+    mediaType = "application/xml"
+    baseName = "sitemap"
+    isPlainText = false
+    notAlternative = true
+    permalinkable = false
+    noUgly = true
+
+[outputs]
+  home = ["HTML", "md", "llms", "llmsfull", "sitemapx"]
+  section = ["HTML", "md"]
+  page = ["HTML", "md"]
+
+[minify]
+  [minify.tdewolff.html]
+    keepDocumentTags = true
+    keepEndTags = true
+    keepQuotes = false
+
+[security]
+  [security.http]
+    # resources.GetRemote is only used for the blog feed and the project
+    # sitemaps, all on this domain or its subdomains.
+    urls = ['^https://([a-z0-9-]+\.)?furkankoykiran\.com\.tr/']

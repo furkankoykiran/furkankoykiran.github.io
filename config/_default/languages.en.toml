@@ -1,0 +1,16 @@
+locale = "en"
+label = "English"
+weight = 2
+contentDir = "content/en"
+title = "Furkan Köykıran"
+
+[params]
+  description = "Furkan Köykıran builds MCP servers, AI agents, Python automation and trading bots, and contributes to large open-source projects. Open to work."
+
+# Content files keep their Turkish names; English URLs are set here and with
+# `url` in front matter.
+[permalinks]
+  [permalinks.page]
+    projeler = "/projects/:contentbasename/"
+  [permalinks.section]
+    projeler = "/projects/"
