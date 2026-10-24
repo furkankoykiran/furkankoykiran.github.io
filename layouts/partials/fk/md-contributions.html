@@ -1,0 +1,12 @@
+{{- $c := hugo.Data.contributions -}}
+{{- $isTR := eq site.Language.Lang "tr" -}}
+{{- with $c -}}
+{{ cond $isTR "Toplam" "Total" }}: {{ .total_prs }} {{ cond $isTR "birleşmiş PR," "merged PRs in" }} {{ .total_repos }} {{ cond $isTR "proje" "projects" }} ({{ .generated_at }}).
+{{ range .repos }}
+### [{{ .repo }}]({{ .url }}) ({{ .stars }} ★{{ with .language }}, {{ . }}{{ end }})
+{{ with .description }}
+{{ . }}
+{{ end }}
+{{ range .prs }}- [#{{ .number }} {{ .title }}]({{ .url }}) ({{ cond $isTR "birleştirildi" "merged" }} {{ .merged_at }})
+{{ end }}{{ end }}
+{{- end -}}

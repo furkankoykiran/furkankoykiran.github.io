@@ -1,0 +1,38 @@
+/* FK scheme: navy base (#11151D) with a cool prism accent (blue → teal),
+   taken from the FK logo. Values are "R, G, B" as Blowfish expects. */
+:root {
+  --color-neutral: 255, 255, 255;
+  /* Navy-tinted greys; 800 is the brand base #11151D */
+  --color-neutral-50: 246, 248, 251;
+  --color-neutral-100: 237, 241, 246;
+  --color-neutral-200: 221, 227, 236;
+  --color-neutral-300: 196, 205, 218;
+  --color-neutral-400: 148, 160, 178;
+  --color-neutral-500: 100, 114, 135;
+  --color-neutral-600: 70, 82, 101;
+  --color-neutral-700: 40, 48, 62;
+  --color-neutral-800: 17, 21, 29;
+  --color-neutral-900: 10, 13, 19;
+  /* Prism blue */
+  --color-primary-50: 236, 247, 255;
+  --color-primary-100: 214, 238, 255;
+  --color-primary-200: 173, 222, 255;
+  --color-primary-300: 118, 199, 255;
+  --color-primary-400: 76, 184, 255;
+  --color-primary-500: 24, 142, 232;
+  --color-primary-600: 10, 113, 196;
+  --color-primary-700: 9, 89, 158;
+  --color-primary-800: 12, 72, 128;
+  --color-primary-900: 14, 60, 105;
+  /* Prism teal */
+  --color-secondary-50: 236, 253, 250;
+  --color-secondary-100: 204, 250, 242;
+  --color-secondary-200: 153, 243, 228;
+  --color-secondary-300: 94, 229, 211;
+  --color-secondary-400: 61, 217, 193;
+  --color-secondary-500: 20, 184, 166;
+  --color-secondary-600: 13, 148, 136;
+  --color-secondary-700: 15, 118, 110;
+  --color-secondary-800: 17, 94, 89;
+  --color-secondary-900: 19, 78, 74;
+}

@@ -1,0 +1,47 @@
+{{- /* Latest blog posts, read from the blog feed at build time (RSS 2.0 or
+  Atom). Returns a slice of dicts {title, url, date, summary}; empty if the
+  feed cannot be read, so the build never fails on it. */ -}}
+{{- $isTR := eq site.Language.Lang "tr" -}}
+{{- $feeds := slice site.Params.blog.feed -}}
+{{- if not $isTR }}{{ $feeds = slice site.Params.blog.feedEN site.Params.blog.feed }}{{ end -}}
+{{- $posts := slice -}}
+{{- $usedFallback := false -}}
+{{- range $i, $url := $feeds -}}
+  {{- if not $posts -}}
+    {{- with try (resources.GetRemote $url (dict "timeout" "8s")) -}}
+      {{- with .Err -}}
+        {{- warnf "[blog feed] %s: %s" $url . -}}
+      {{- else with .Value -}}
+        {{- with try (transform.Unmarshal .Content) -}}
+          {{- if not .Err -}}
+            {{- $data := .Value -}}
+            {{- $items := slice -}}
+            {{- with $data.channel -}}
+              {{- with .item }}{{ if reflect.IsMap . }}{{ $items = slice . }}{{ else }}{{ $items = . }}{{ end }}{{ end -}}
+            {{- end -}}
+            {{- with $data.entry }}{{ if reflect.IsMap . }}{{ $items = slice . }}{{ else }}{{ $items = . }}{{ end }}{{ end -}}
+            {{- range $items -}}
+              {{- $title := .title -}}
+              {{- if reflect.IsMap $title }}{{ $title = index $title "#text" }}{{ end -}}
+              {{- $link := "" -}}
+              {{- if reflect.IsMap .link }}{{ $link = index .link "-href" }}{{ else if reflect.IsSlice .link }}{{ $link = index (index .link 0) "-href" }}{{ else }}{{ $link = .link }}{{ end -}}
+              {{- $date := .pubDate | default .published | default .updated | default "" -}}
+              {{- $sum := .description | default .summary | default "" -}}
+              {{- if reflect.IsMap $sum }}{{ $sum = index $sum "#text" | default "" }}{{ end -}}
+              {{- $hidden := partial "fk/is-blocked.html" (printf "%s %s" $title $link) -}}
+              {{- /* Older posts share one feed; "-en/" slugs mark English posts. */ -}}
+              {{- $isEnPost := or (strings.Contains $link "-en/") (strings.Contains $link "/en/") -}}
+              {{- $langOK := cond (and (eq $i 0) (not $isTR)) true (cond $isTR (not $isEnPost) $isEnPost) -}}
+              {{- if and $title $link (not $hidden) $langOK -}}
+                {{- $posts = $posts | append (dict "title" (plainify $title | htmlUnescape) "url" $link "date" (time.AsTime $date) "summary" ($sum | plainify | htmlUnescape | truncate 150)) -}}
+              {{- end -}}
+            {{- end -}}
+          {{- else -}}
+            {{- warnf "[blog feed] cannot parse %s" $url -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return first (site.Params.blog.posts | default 3) $posts -}}

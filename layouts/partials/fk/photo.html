@@ -1,0 +1,6 @@
+{{- /* The author photo at a stable, descriptive URL (/images/<file>.jpg).
+  Used in JSON-LD, the image sitemap and as the <img> fallback. */ -}}
+{{- $src := resources.Get site.Params.author.image -}}
+{{- $name := path.Base site.Params.author.image | strings.TrimSuffix (path.Ext site.Params.author.image) -}}
+{{- $out := $src.Resize "800x800 jpg q85" | resources.Copy (printf "images/%s.jpg" $name) -}}
+{{- return $out -}}

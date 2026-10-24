@@ -1,0 +1,16 @@
+{{ define "main" }}
+<section class="fk-wrap fk-404" aria-labelledby="nf-title">
+  <p class="fk-404__code" aria-hidden="true">404</p>
+  <h1 id="nf-title">{{ i18n "fk.err_title" }}</h1>
+  <p>{{ i18n "fk.err_description" }}</p>
+  <div class="fk-cta">
+    <a class="fk-btn fk-btn--primary" href="{{ site.Home.RelPermalink }}">{{ i18n "fk.err_home" }}</a>
+    {{- range site.Menus.main }}
+    <a class="fk-btn" href="{{ .URL }}">{{ .Name }}</a>
+    {{- end }}
+  </div>
+  <p class="fk-404__langs">
+    {{- range site.Home.Translations }}<a class="fk-link" href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}">{{ .Language.Label }}</a>{{ end -}}
+  </p>
+</section>
+{{ end }}

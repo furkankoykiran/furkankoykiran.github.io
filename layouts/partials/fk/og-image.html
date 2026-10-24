@@ -1,0 +1,44 @@
+{{- /* Returns the page's 1200x630 Open Graph image, published at
+  /images/og/<name>-<page path>.jpg. The title is drawn on a transparent box
+  (so long titles wrap inside the left area) and laid over og-base.png,
+  which scripts/make_og_base.py renders. */ -}}
+{{- $p := . -}}
+{{- $isTR := eq $p.Language.Lang "tr" -}}
+{{- $title := $p.Params.ogTitle | default $p.Title | default site.Title -}}
+{{- $kicker := i18n "fk.og_tagline" -}}
+{{- if $p.IsHome -}}
+  {{- $title = i18n "fk.og_home_title" -}}
+  {{- $kicker = i18n "fk.status" -}}
+{{- else if $p.Params.project -}}
+  {{- $kicker = printf "%s · %s" (i18n "fk.og_project") ($p.Params.categoryLabel | default "") -}}
+{{- else if $p.Params.ogKicker -}}
+  {{- $kicker = $p.Params.ogKicker -}}
+{{- end -}}
+{{- $title = $title | truncate 64 -}}
+{{- /* Turkish casing rules: i -> İ, ı -> I. */ -}}
+{{- if $isTR }}{{ $kicker = replace (replace $kicker "i" "İ") "ı" "I" }}{{ end -}}
+{{- $kicker = upper $kicker -}}
+{{- $sub := "" -}}
+{{- with $p.Params.project }}{{ $sub = (index . $p.Language.Lang).summary | truncate 120 }}{{ end -}}
+{{- $size := cond (gt (len $title) 40) 52 60 -}}
+
+{{- $base := resources.Get "img/og-base.png" -}}
+{{- $box := resources.Get "img/og-textbox.png" -}}
+{{- $bold := resources.Get "fonts/Poppins-Bold.ttf" -}}
+{{- $mono := resources.Get "fonts/IBMPlexMono-Medium.ttf" -}}
+{{- $text := $box | images.Filter
+  (images.Text $kicker (dict "font" $mono "size" 22 "color" "#5cc1ff" "x" 0 "y" 0))
+  (images.Text $title (dict "font" $bold "size" $size "color" "#f2f5f9" "linespacing" 6 "x" 0 "y" 46))
+-}}
+{{- with $sub -}}
+  {{- $regular := resources.Get "fonts/Poppins-Regular.ttf" -}}
+  {{- $y := cond (gt (len $title) 20) 196 128 -}}
+  {{- $text = $text | images.Filter (images.Text . (dict "font" $regular "size" 26 "color" "#b9c5d6" "linespacing" 8 "x" 0 "y" $y)) -}}
+{{- end -}}
+{{- $img := $base | images.Filter (images.Overlay $text 80 150) -}}
+
+{{- $slug := strings.TrimSuffix ".html" $p.RelPermalink | strings.Trim "/" | replaceRE `[^A-Za-z0-9]+` "-" | lower -}}
+{{- $name := urlize (site.Params.author.alternateName | default site.Title) -}}
+{{- if $slug }}{{ $name = printf "%s-%s" $name $slug }}{{ end -}}
+{{- $img = $img.Process "jpg q84" | resources.Copy (printf "images/og/%s.jpg" $name) -}}
+{{- return $img -}}

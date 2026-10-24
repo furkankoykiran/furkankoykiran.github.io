@@ -1,0 +1,11 @@
+{{- /* Raw markdown with this site's shortcodes resolved to plain text. */ -}}
+{{- $raw := .RawContent -}}
+{{- $mail := i18n "fk.email_fallback" -}}
+{{- $soc := slice -}}
+{{- range site.Params.social }}{{ $soc = $soc | append (printf "- [%s](%s)" .name .url) }}{{ end -}}
+{{- $raw = replaceRE `\{\{<\s*email\s*>\}\}` $mail $raw -}}
+{{- $raw = replaceRE `\{\{<\s*socials\s*>\}\}` (delimit $soc "\n") $raw -}}
+{{- $raw = replaceRE `(?m)^(#+ .*?)\s*\{#[^}]+\}\s*$` "$1" $raw -}}
+{{- /* make site-relative links absolute */ -}}
+{{- $raw = replaceRE `\]\(/` (printf "](%s" site.BaseURL) $raw -}}
+{{- return $raw -}}

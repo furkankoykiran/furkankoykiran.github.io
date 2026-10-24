@@ -1,0 +1,12 @@
+{{- /* Compact number: 142549 -> "142.5k" (EN) / "142,5 bin" (TR) */ -}}
+{{- $n := int . -}}
+{{- $out := string $n -}}
+{{- $tr := eq site.Language.Lang "tr" -}}
+{{- if ge $n 1000 -}}
+  {{- $v := div (float $n) 1000.0 -}}
+  {{- $s := "" -}}
+  {{- $s = printf "%.1f" $v | strings.TrimSuffix ".0" -}}
+  {{- if $tr }}{{ $s = replace $s "." "," }}{{ end -}}
+  {{- $out = printf "%s%s" $s (cond $tr " bin" "k") -}}
+{{- end -}}
+{{- return $out -}}

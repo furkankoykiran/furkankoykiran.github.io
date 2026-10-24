@@ -1,0 +1,33 @@
+{{- $c := hugo.Data.contributions -}}
+{{- with $c -}}
+<section class="fk-section fk-section--soft" aria-labelledby="oss-title">
+  <div class="fk-wrap">
+    <header class="fk-head fk-head--row">
+      <div>
+        <span class="fk-kicker"><b>03</b> {{ i18n "fk.oss_kicker" }}</span>
+        <h2 id="oss-title">{{ i18n "fk.oss_title" }}</h2>
+        <p>{{ i18n "fk.oss_intro" }}</p>
+      </div>
+      {{- with site.GetPage "/katkilar" }}
+      <a class="fk-arrow" href="{{ .RelPermalink }}">{{ i18n "fk.all_contributions" }}</a>
+      {{- end }}
+    </header>
+    <div class="fk-oss">
+      {{- range first 6 (where .repos "highlight" true) }}
+      <article class="fk-oss__row">
+        <div class="fk-oss__repo">
+          <a href="{{ .url }}" rel="noopener">{{ .repo }}</a>
+          <small>{{ with .language }}{{ . }} · {{ end }}{{ i18n "fk.merged_prs" (int .pr_count) }}</small>
+        </div>
+        <ul class="fk-oss__prs">
+          {{- range first 2 .prs }}
+          <li><a href="{{ .url }}" rel="noopener"><code>#{{ .number }}</code>{{ .title }}</a></li>
+          {{- end }}
+        </ul>
+        <span class="fk-oss__stars fk-star"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "star" }}</span><span class="fk-sr">{{ i18n "fk.stars_aria" .stars }}</span><span aria-hidden="true">{{ partial "fk/num.html" .stars }}</span></span>
+      </article>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end -}}

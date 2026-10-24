@@ -1,0 +1,38 @@
+{{- /* Sitemap with hreflang alternates (x-default is Turkish) and image
+  entries: the author photo on the home and about pages, and each page's Open
+  Graph image. The Turkish home (/sitemap.xml) lists the pages of every
+  language; /en/sitemap.xml lists the English ones. */ -}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+{{- $photo := partial "fk/photo.html" . }}
+{{- $all := slice -}}
+{{- if eq site.Language.Lang "tr" }}{{ range hugo.Sites }}{{ $all = $all | append .Pages }}{{ end }}{{ else }}{{ $all = site.Pages }}{{ end -}}
+{{- range $all }}
+  {{- if and .Permalink (not .Sitemap.Disable) (ne .Kind "404") (not .Params.noindex) }}
+  <url>
+    <loc>{{ .Permalink }}</loc>
+    {{- if not .Lastmod.IsZero }}
+    <lastmod>{{ .Lastmod.Format "2006-01-02" }}</lastmod>
+    {{- end }}
+    {{- if .IsTranslated }}
+    {{- range .AllTranslations }}
+    <xhtml:link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}"/>
+    {{- end }}
+    {{- range where .AllTranslations "Language.Lang" "tr" }}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ .Permalink }}"/>
+    {{- end }}
+    {{- end }}
+    {{- if or .IsHome (eq .Params.layout "about") }}
+    <image:image>
+      <image:loc>{{ $photo.Permalink }}</image:loc>
+    </image:image>
+    {{- end }}
+    {{- with partial "fk/og-image.html" . }}
+    <image:image>
+      <image:loc>{{ .Permalink }}</image:loc>
+    </image:image>
+    {{- end }}
+  </url>
+  {{- end }}
+{{- end }}
+</urlset>

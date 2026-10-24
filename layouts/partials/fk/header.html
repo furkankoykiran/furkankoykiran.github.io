@@ -1,0 +1,53 @@
+{{- $page := . -}}
+{{- $photo := (resources.Get site.Params.author.image).Resize "96x96 webp q80" -}}
+{{- $other := "" -}}
+{{- range .Translations }}{{ $other = . }}{{ end -}}
+{{- if not $other -}}
+  {{- range site.Home.Translations }}{{ $other = . }}{{ end -}}
+{{- end -}}
+<header class="fk-header">
+  <div class="fk-wrap fk-header__bar">
+    <a class="fk-brand" href="{{ site.Home.RelPermalink }}" rel="home" {{ if .IsHome }}aria-current="page"{{ end }}>
+      <img src="{{ $photo.RelPermalink }}" width="38" height="38" alt="" decoding="async">
+      <span>{{ site.Params.author.name }}</span>
+    </a>
+    <nav class="fk-nav" aria-label="{{ i18n "fk.main_menu" }}">
+      <ul class="fk-nav__list">
+        {{- range site.Menus.main }}
+          {{- $active := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
+          <li>
+            <a class="fk-nav__link" href="{{ .URL }}"
+              {{- if $active }} aria-current="page"{{ end }}
+              {{- if strings.HasPrefix .URL "http" }} rel="noopener"{{ end }}>
+              {{- .Name -}}
+              {{- if strings.HasPrefix .URL "http" }}<span class="fk-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 11 11 5M6 5h5v5"/></svg></span>{{ end -}}
+            </a>
+          </li>
+        {{- end }}
+      </ul>
+      <div class="fk-tools">
+        {{- with $other }}
+          <a class="fk-iconbtn" href="{{ .RelPermalink }}" hreflang="{{ .Language.Locale }}"
+            title="{{ i18n "fk.switch_lang_aria" }}">{{ i18n "fk.switch_lang" }}<span class="fk-sr"> – {{ i18n "fk.switch_lang_aria" }}</span></a>
+        {{- end }}
+        <button id="appearance-switcher" class="fk-iconbtn" type="button"
+          aria-label="{{ i18n "fk.dark_appearance" }}" title="{{ i18n "fk.dark_appearance" }}"
+          data-label-light="{{ i18n "fk.dark_appearance" }}" data-label-dark="{{ i18n "fk.light_appearance" }}">
+          <span class="fk-icon fk-theme-light" aria-hidden="true">{{ partial "fk/svg.html" "moon" }}</span>
+          <span class="fk-icon fk-theme-dark" aria-hidden="true">{{ partial "fk/svg.html" "sun" }}</span>
+        </button>
+        <details class="fk-mnav">
+          <summary class="fk-iconbtn" aria-label="{{ i18n "fk.menu" }}">
+            <span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "bars" }}</span>
+          </summary>
+          <div class="fk-mnav__panel">
+            {{- range site.Menus.main }}
+              {{- $active := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
+              <a href="{{ .URL }}" {{ if $active }}aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{- end }}
+          </div>
+        </details>
+      </div>
+    </nav>
+  </div>
+</header>

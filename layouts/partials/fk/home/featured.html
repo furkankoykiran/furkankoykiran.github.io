@@ -1,0 +1,20 @@
+{{- $featured := where (where hugo.Data.projects.projects "featured" true) "early" false -}}
+<section class="fk-section" aria-labelledby="featured-title">
+  <div class="fk-wrap">
+    <header class="fk-head fk-head--row">
+      <div>
+        <span class="fk-kicker"><b>02</b> {{ i18n "fk.featured_kicker" }}</span>
+        <h2 id="featured-title">{{ i18n "fk.featured_title" }}</h2>
+        <p>{{ i18n "fk.featured_intro" }}</p>
+      </div>
+      {{- with site.GetPage "/projeler" }}
+      <a class="fk-arrow" href="{{ .RelPermalink }}">{{ i18n "fk.all_projects" }}</a>
+      {{- end }}
+    </header>
+    <div class="fk-grid">
+      {{- range first 6 (sort $featured "featured_rank") }}
+        {{ partial "fk/project-card.html" . }}
+      {{- end }}
+    </div>
+  </div>
+</section>

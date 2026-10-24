@@ -1,0 +1,16 @@
+<section class="fk-section" id="contact" aria-labelledby="contact-title">
+  <div class="fk-wrap">
+    <div class="fk-contact">
+      <div>
+        <span class="fk-kicker"><b>05</b> {{ i18n "fk.contact_kicker" }}</span>
+        <h2 id="contact-title">{{ i18n "fk.contact_title" }}</h2>
+        <p>{{ i18n "fk.contact_body" }}</p>
+        <div class="fk-cta">
+          {{ partial "fk/email.html" (dict) }}
+        </div>
+        <p class="fk-email-line">{{ i18n "fk.email_label" }}: {{ partial "fk/email.html" (dict "plain" true) }}</p>
+      </div>
+      {{ partial "fk/socials.html" . }}
+    </div>
+  </div>
+</section>

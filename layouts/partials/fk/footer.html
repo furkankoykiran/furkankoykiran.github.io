@@ -1,0 +1,33 @@
+{{- $photo := (resources.Get site.Params.author.image).Resize "64x64 webp q80" -}}
+<footer class="fk-footer">
+  <div class="fk-wrap">
+    <div class="fk-footer__top">
+      <a class="fk-footer__brand" href="{{ site.Home.RelPermalink }}">
+        <img src="{{ $photo.RelPermalink }}" width="28" height="28" alt="" loading="lazy" decoding="async">
+        {{ site.Params.author.name }}
+      </a>
+      <ul class="fk-footer__social" aria-label="{{ i18n "fk.social_title" }}">
+        {{- range site.Params.social }}
+          <li>
+            <a href="{{ .url }}" rel="me noopener" aria-label="{{ .name }}" title="{{ .name }}">
+              <span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" .icon }}</span>
+            </a>
+          </li>
+        {{- end }}
+      </ul>
+    </div>
+    <div class="fk-footer__bottom">
+      <p>{{ i18n "fk.footer_rights" (dict "year" now.Year "name" site.Params.author.name) }}</p>
+      <nav aria-label="{{ i18n "fk.footer_menu" }}">
+        <ul class="fk-footer__links">
+          {{- range site.Menus.footer }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{- end }}
+          {{- with site.GetPage "/gizlilik" }}
+          <li><a href="{{ .RelPermalink }}#{{ cond (eq site.Language.Lang "tr") "cerezler" "cookies" }}" data-fk-consent-open>{{ i18n "fk.cookie_prefs" }}</a></li>
+          {{- end }}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
