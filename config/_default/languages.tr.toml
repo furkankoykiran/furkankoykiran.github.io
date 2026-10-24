@@ -1,0 +1,8 @@
+locale = "tr"
+label = "Türkçe"
+weight = 1
+contentDir = "content/tr"
+title = "Furkan Köykıran"
+
+[params]
+  description = "Furkan Köykıran: MCP sunucuları, yapay zekâ ajanları, Python otomasyonu ve trading botları geliştiren yazılımcı. Açık kaynağa katkı veriyor, işe açık."

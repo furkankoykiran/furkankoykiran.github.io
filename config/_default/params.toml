@@ -1,0 +1,86 @@
+# Colour scheme file in assets/css/schemes/ (Blowfish scheme format).
+colorScheme = "fk"
+# Used until the visitor picks a theme with the switch in the header.
+defaultAppearance = "dark"
+autoSwitchAppearance = false
+fingerprintAlgorithm = "sha384"
+
+# Sites published from other repositories under this domain
+# (https://furkankoykiran.com.tr/<name>/). This site never generates these
+# paths; their sitemaps are listed in robots.txt and their projects link there.
+projectSites = ["awesome-trending-repos", "EarthquakeSim", "hues-and-cues", "Memoryze", "wavelength", "XRLabLLM"]
+
+# Used by the header, home page, JSON-LD, llms.txt and the scripts.
+[author]
+  name = "Furkan Köykıran"
+  alternateName = "Furkan Koykiran"
+  givenName = "Furkan"
+  familyName = "Köykıran"
+  image = "img/furkan-koykiran.jpg"
+  # Base64 so the address never appears in the HTML as plain text; it is
+  # decoded in the browser (layouts/partials/fk/email.html).
+  emailB64 = "ZnVya2Fua295a2lyYW5AZ21haWwuY29t"
+  githubUser = "furkankoykiran"
+  twitter = "@furkankoykiran"
+
+[blog]
+  url = "https://blog.furkankoykiran.com.tr/"
+  urlEN = "https://blog.furkankoykiran.com.tr/en/"
+  # Read at build time for "latest posts"; if unavailable, a link is shown.
+  feed = "https://blog.furkankoykiran.com.tr/feed.xml"
+  feedEN = "https://blog.furkankoykiran.com.tr/en/feed.xml"
+  posts = 3
+
+# Empty values render nothing. In CI the deploy workflow fills them from
+# repository variables (vars.* mapped to HUGO_PARAMS_*), so IDs never need
+# to be committed.
+[analytics]
+  ga4 = ""           # Google Analytics 4 measurement ID (vars.GA4_ID)
+  clarity = ""       # Microsoft Clarity project ID (vars.CLARITY_ID)
+  cfBeaconToken = "" # Cloudflare Web Analytics token (vars.CF_BEACON_PORTFOLIO)
+
+[verification]
+  google = "" # Google Search Console meta tag content (vars.GOOGLE_SITE_VERIFICATION)
+  bing = ""   # Bing Webmaster Tools msvalidate.01 content (vars.BING_SITE_VERIFICATION)
+  yandex = "" # Yandex Webmaster verification content (vars.YANDEX_VERIFICATION)
+
+# Social profiles in display order. `icon` is an SVG name from the theme's
+# assets/icons/; `support` moves a link to the "support my work" group.
+[[social]]
+  name = "GitHub"
+  icon = "github"
+  url = "https://github.com/furkankoykiran"
+[[social]]
+  name = "LinkedIn"
+  icon = "linkedin"
+  url = "https://www.linkedin.com/in/furkankoykiran/"
+[[social]]
+  name = "X"
+  icon = "x-twitter"
+  url = "https://x.com/furkankoykiran"
+[[social]]
+  name = "dev.to"
+  icon = "dev"
+  url = "https://dev.to/furkankoykiran"
+[[social]]
+  name = "Medium"
+  icon = "medium"
+  url = "https://medium.com/@furkankoykiran"
+[[social]]
+  name = "YouTube"
+  icon = "youtube"
+  url = "https://www.youtube.com/channel/UCXGn4Rqllr3GISS6pwKkYhw"
+[[social]]
+  name = "Instagram"
+  icon = "instagram"
+  url = "https://instagram.com/furkankoykiran"
+[[social]]
+  name = "GitHub Sponsors"
+  icon = "heart"
+  url = "https://github.com/sponsors/furkankoykiran"
+  support = true
+[[social]]
+  name = "Buy Me a Coffee"
+  icon = "mug-hot"
+  url = "https://www.buymeacoffee.com/furkankoykiran"
+  support = true
