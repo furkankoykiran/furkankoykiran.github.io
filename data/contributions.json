@@ -1,0 +1,233 @@
+{
+  "generated_at": "2026-10-23T15:41:16Z",
+  "author": "furkankoykiran",
+  "total_prs": 14,
+  "total_repos": 10,
+  "total_stars": 340861,
+  "repos": [
+    {
+      "repo": "github/spec-kit",
+      "name": "spec-kit",
+      "owner": "github",
+      "url": "https://github.com/github/spec-kit",
+      "description": "💫 Toolkit to help you get started with SDD or any other process!",
+      "stars": 142549,
+      "language": "Python",
+      "highlight": true,
+      "pr_count": 1,
+      "last_merged": "2026-04-13",
+      "prs": [
+        {
+          "title": "feat(agents): add Goose AI agent support",
+          "url": "https://github.com/github/spec-kit/pull/2015",
+          "number": 2015,
+          "merged_at": "2026-04-13"
+        }
+      ]
+    },
+    {
+      "repo": "microsoft/playwright",
+      "name": "playwright",
+      "owner": "microsoft",
+      "url": "https://github.com/microsoft/playwright",
+      "description": "Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API.",
+      "stars": 98362,
+      "language": "TypeScript",
+      "highlight": true,
+      "pr_count": 2,
+      "last_merged": "2026-03-13",
+      "prs": [
+        {
+          "title": "fix: sanitize malformed Unicode in MCP responses",
+          "url": "https://github.com/microsoft/playwright/pull/39625",
+          "number": 39625,
+          "merged_at": "2026-03-13"
+        },
+        {
+          "title": "fix(mcp): split header value only on first colon in headerParser",
+          "url": "https://github.com/microsoft/playwright/pull/39401",
+          "number": 39401,
+          "merged_at": "2026-03-10"
+        }
+      ]
+    },
+    {
+      "repo": "HKUDS/CLI-Anything",
+      "name": "CLI-Anything",
+      "owner": "HKUDS",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
+      "stars": 56464,
+      "language": "Python",
+      "highlight": true,
+      "pr_count": 2,
+      "last_merged": "2026-04-07",
+      "prs": [
+        {
+          "title": "feat(browser): add security hardening for DOMShell MCP automation",
+          "url": "https://github.com/HKUDS/CLI-Anything/pull/156",
+          "number": 156,
+          "merged_at": "2026-04-07"
+        },
+        {
+          "title": "feat: add Browser automation CLI via DOMShell MCP server",
+          "url": "https://github.com/HKUDS/CLI-Anything/pull/118",
+          "number": 118,
+          "merged_at": "2026-03-22"
+        }
+      ]
+    },
+    {
+      "repo": "teng-lin/notebooklm-py",
+      "name": "notebooklm-py",
+      "owner": "teng-lin",
+      "url": "https://github.com/teng-lin/notebooklm-py",
+      "description": "Unofficial Python API and agentic skill for Google Gemini Notebook. Full programmatic access to Gemini Notebook's features—including capabilities the web UI doesn't expose—via Python, CLI, and AI agents like Claude Code, Codex, and OpenClaw.",
+      "stars": 19864,
+      "language": "Python",
+      "highlight": true,
+      "pr_count": 1,
+      "last_merged": "2026-03-11",
+      "prs": [
+        {
+          "title": "feat: add notebook metadata export with sources list (issue #171)",
+          "url": "https://github.com/teng-lin/notebooklm-py/pull/174",
+          "number": 174,
+          "merged_at": "2026-03-11"
+        }
+      ]
+    },
+    {
+      "repo": "keploy/keploy",
+      "name": "keploy",
+      "owner": "keploy",
+      "url": "https://github.com/keploy/keploy",
+      "description": "Open-source platform for creating safe, isolated production sandboxes for API, integration, and E2E testing.",
+      "stars": 18713,
+      "language": "Go",
+      "highlight": true,
+      "pr_count": 2,
+      "last_merged": "2026-03-20",
+      "prs": [
+        {
+          "title": "fix(agent): close response bodies in MockOutgoing and UpdateMockParams",
+          "url": "https://github.com/keploy/keploy/pull/3932",
+          "number": 3932,
+          "merged_at": "2026-03-20"
+        },
+        {
+          "title": "fix(utils): use-after-close in isGoBinary function",
+          "url": "https://github.com/keploy/keploy/pull/3927",
+          "number": 3927,
+          "merged_at": "2026-03-20"
+        }
+      ]
+    },
+    {
+      "repo": "Mouseww/anything-analyzer",
+      "name": "anything-analyzer",
+      "owner": "Mouseww",
+      "url": "https://github.com/Mouseww/anything-analyzer",
+      "description": "全能协议分析工具：浏览器抓包 + MITM 代理 + 指纹伪装 + AI 分析 + MCP Server 无缝对接 AI Agent/IDE   |  All-in-one protocol analysis toolkit — built-in browser capture, MITM proxy, JS hooks, fingerprint spoofing, AI analysis & MCP server for agent integration",
+      "stars": 3794,
+      "language": "TypeScript",
+      "highlight": true,
+      "pr_count": 1,
+      "last_merged": "2026-04-17",
+      "prs": [
+        {
+          "title": "docs(readme): add English README",
+          "url": "https://github.com/Mouseww/anything-analyzer/pull/13",
+          "number": 13,
+          "merged_at": "2026-04-17"
+        }
+      ]
+    },
+    {
+      "repo": "Rishikant181/Rettiwt-API",
+      "name": "Rettiwt-API",
+      "owner": "Rishikant181",
+      "url": "https://github.com/Rishikant181/Rettiwt-API",
+      "description": "A CLI tool and an API for fetching data from Twitter for free!",
+      "stars": 897,
+      "language": "TypeScript",
+      "highlight": true,
+      "pr_count": 1,
+      "last_merged": "2025-11-24",
+      "prs": [
+        {
+          "title": "Fixed error handling for errors returned with Twitter API 200 OK responses",
+          "url": "https://github.com/Rishikant181/Rettiwt-API/pull/797",
+          "number": 797,
+          "merged_at": "2025-11-24"
+        }
+      ]
+    },
+    {
+      "repo": "google-labs-code/jules-sdk",
+      "name": "jules-sdk",
+      "owner": "google-labs-code",
+      "url": "https://github.com/google-labs-code/jules-sdk",
+      "description": "",
+      "stars": 138,
+      "language": "TypeScript",
+      "highlight": true,
+      "pr_count": 1,
+      "last_merged": "2026-03-16",
+      "prs": [
+        {
+          "title": "feat: Implement session deletion API (#105)",
+          "url": "https://github.com/google-labs-code/jules-sdk/pull/184",
+          "number": 184,
+          "merged_at": "2026-03-16"
+        }
+      ]
+    },
+    {
+      "repo": "akutishevsky/nutrition-mcp",
+      "name": "nutrition-mcp",
+      "owner": "akutishevsky",
+      "url": "https://github.com/akutishevsky/nutrition-mcp",
+      "description": "A remote MCP server for personal nutrition tracking — log meals, track macros, and review nutrition history through conversation.",
+      "stars": 80,
+      "language": "TypeScript",
+      "highlight": true,
+      "pr_count": 1,
+      "last_merged": "2026-10-08",
+      "prs": [
+        {
+          "title": "Add Turkish (tr) as a site and widget locale",
+          "url": "https://github.com/akutishevsky/nutrition-mcp/pull/223",
+          "number": 223,
+          "merged_at": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "repo": "Newmcpe/fufloxempire",
+      "name": "fufloxempire",
+      "owner": "Newmcpe",
+      "url": "https://github.com/Newmcpe/fufloxempire",
+      "description": "Bot for autoplay in new telegram clicker game X Empire (ex. Musk Empire)",
+      "stars": 14,
+      "language": "TypeScript",
+      "highlight": false,
+      "pr_count": 2,
+      "last_merged": "2024-08-01",
+      "prs": [
+        {
+          "title": "refactor: optimized algorithm",
+          "url": "https://github.com/Newmcpe/fufloxempire/pull/14",
+          "number": 14,
+          "merged_at": "2024-08-01"
+        },
+        {
+          "title": "feat: Add delay before setting cooldown in combater module",
+          "url": "https://github.com/Newmcpe/fufloxempire/pull/12",
+          "number": 12,
+          "merged_at": "2024-07-31"
+        }
+      ]
+    }
+  ]
+}
