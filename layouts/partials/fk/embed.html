@@ -1,0 +1,25 @@
+{{- /* Click-to-load live demo. Context: a project map from data/projects.json.
+  Nothing is fetched from the embedded site until the visitor asks for it, so
+  the project page keeps its own LCP and the third-party page cannot slow the
+  first paint. The iframe itself is created in assets/js/fk.js with
+  loading="lazy" and a descriptive title. */ -}}
+{{- $p := . -}}
+{{- with $p.links.embed -}}
+{{- $url := . -}}
+<section class="fk-demo" aria-labelledby="demo-title">
+  <h2 id="demo-title">{{ i18n "fk.demo_title" }}</h2>
+  <p class="fk-demo__intro">{{ i18n "fk.demo_intro" }}</p>
+  <div class="fk-demo__frame" data-embed="{{ $url }}" data-embed-title="{{ $p.name }}">
+    <button type="button" class="fk-demo__start" data-embed-load>
+      <span class="fk-demo__badge">{{ i18n "fk.demo_badge" }}</span>
+      <span class="fk-demo__label">{{ i18n "fk.demo_start" }}</span>
+      <span class="fk-demo__url">{{ $url }}</span>
+    </button>
+  </div>
+  <p class="fk-demo__note">
+    {{ i18n "fk.demo_note" }}
+    <a href="{{ $url }}" rel="noopener">{{ i18n "fk.demo_open" }}</a>
+  </p>
+  <noscript><p><a class="fk-btn" href="{{ $url }}" rel="noopener">{{ i18n "fk.demo_open" }}</a></p></noscript>
+</section>
+{{- end -}}

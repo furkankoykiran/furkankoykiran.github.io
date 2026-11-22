@@ -102,7 +102,8 @@ CATEGORY_OVERRIDES = {
     "fsecurity": "devtools",
     "awesome-trending-repos": "devtools",
     "codelyze": "web",
-    "ProspectForge": "web",
+    "Leadwalk": "web",
+    "telegram-ads-mcp": "mcp",
     "telegram-wallet-p2p-sdk": "trading",
     "speedapi_lib": "trading",
     "Flash-Loan-Arbitrage": "trading",
@@ -132,6 +133,30 @@ EARLY = {
 }
 
 SLUG_OVERRIDES: dict[str, str] = {}
+
+# Legacy project URLs, per language. Hugo turns these into redirect pages
+# (meta refresh) because GitHub Pages cannot send 301s; see
+# infra/cloudflare/ for the matching Cloudflare redirect rule.
+LEGACY_ALIASES: dict[str, dict[str, list[str]]] = {
+    "Leadwalk": {
+        # Hugo prepends the language prefix to aliases on non-default
+        # languages, so the English alias is written without /en.
+        "tr": ["/projeler/prospectforge/"],
+        "en": ["/projects/prospectforge/"],
+    },
+}
+
+# Projects whose live deployment is embedded on the project page as a
+# click-to-load iframe. The URL comes from the live link.
+EMBEDDED = {
+    "awesome-trending-repos",
+    "contextify-cli",
+    "EarthquakeSim",
+    "hues-and-cues",
+    "Memoryze",
+    "wavelength",
+    "XRLabLLM",
+}
 
 # Homepages on these domains (besides the site's own) count as live sites.
 EXTRA_OWN_DOMAINS = ("contextify.live",)
@@ -374,6 +399,8 @@ def build(rows: list[dict[str, Any]], source: str, owner: str, gh: str | None) -
             links.pop("live")
         if name in sites:
             links["live"] = sites[name]
+        if name in EMBEDDED and links.get("live"):
+            links["embed"] = links["live"]
 
         category = (
             r["category"]
@@ -386,28 +413,29 @@ def build(rows: list[dict[str, Any]], source: str, owner: str, gh: str | None) -
                 tags.append(t)
         en = clean_desc(r["en"] or r["description"])
         tr = clean_desc(r["tr"] or en)
-        projects.append(
-            {
-                "slug": slugify(name),
-                "name": name,
-                "repo": f"{owner}/{name}",
-                "url": f"https://github.com/{owner}/{name}",
-                "links": links,
-                "stars": int(r["stars"] or 0),
-                "language": r["language"],
-                "tags": tags[:8],
-                "topics": r["topics"][:10],
-                "category": category,
-                "featured": bool(r["featured"]),
-                "featured_rank": FEATURED.index(name) if name in FEATURED else 99,
-                "early": bool(r["early"]),
-                "license": r["license"],
-                "created": r["created"],
-                "pushed": r["pushed"],
-                "tr": {"summary": tr, "description": (r["tr_long"] or tr).strip()},
-                "en": {"summary": en, "description": (r["en_long"] or en).strip()},
-            }
-        )
+        entry: dict[str, Any] = {
+            "slug": slugify(name),
+            "name": name,
+            "repo": f"{owner}/{name}",
+            "url": f"https://github.com/{owner}/{name}",
+            "links": links,
+            "stars": int(r["stars"] or 0),
+            "language": r["language"],
+            "tags": tags[:8],
+            "topics": r["topics"][:10],
+            "category": category,
+            "featured": bool(r["featured"]),
+            "featured_rank": FEATURED.index(name) if name in FEATURED else 99,
+            "early": bool(r["early"]),
+            "license": r["license"],
+            "created": r["created"],
+            "pushed": r["pushed"],
+            "tr": {"summary": tr, "description": (r["tr_long"] or tr).strip()},
+            "en": {"summary": en, "description": (r["en_long"] or en).strip()},
+        }
+        if name in LEGACY_ALIASES:
+            entry["aliases"] = LEGACY_ALIASES[name]
+        projects.append(entry)
 
     # Featured order first, then stars; most recent push breaks ties.
     projects.sort(key=lambda p: p["pushed"], reverse=True)

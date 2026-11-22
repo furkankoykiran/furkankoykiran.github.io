@@ -14,7 +14,9 @@
   {{- $dates := dict -}}
   {{- with $p.created }}{{ $dates = merge $dates (dict "date" (time.AsTime .)) }}{{ end -}}
   {{- with $p.pushed }}{{ $dates = merge $dates (dict "lastmod" (time.AsTime .)) }}{{ end -}}
-  {{- $.AddPage (dict
+  {{- $aliases := slice -}}
+  {{- with $p.aliases }}{{ with index . $lang }}{{ $aliases = . }}{{ end }}{{ end -}}
+  {{- $page := dict
     "kind" "page"
     "path" $p.slug
     "title" $p.name
@@ -27,5 +29,7 @@
       "project" $p
       "categoryLabel" (index $cats $p.category)
     )
-  ) -}}
+  -}}
+  {{- with $aliases }}{{ $page = merge $page (dict "aliases" .) }}{{ end -}}
+  {{- $.AddPage $page -}}
 {{- end -}}

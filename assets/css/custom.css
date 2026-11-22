@@ -672,6 +672,78 @@ html:not(.js) .fk-filters { visibility: hidden; height: 0; margin: 0; overflow: 
 .fk-404__langs a + a { margin-left: 1rem; }
 .fk-spacer { height: clamp(3rem, 7vw, 5rem); }
 
+/* ------------------------------------------- project demo and star callout --- */
+.fk-star { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 0.35rem; color: inherit; }
+.fk-star:hover { color: var(--fk-accent); }
+
+.fk-starcta {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  gap: 1rem; margin: 2.2rem 0 0; padding: 1.15rem 1.25rem;
+  border: 1px solid var(--fk-border); border-radius: var(--fk-radius);
+  background: var(--fk-surface); box-shadow: var(--fk-shadow);
+}
+.fk-starcta__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.7rem; height: 2.7rem; border-radius: 10px;
+  background: var(--fk-accent-soft); color: #c99a0e;
+}
+html.dark .fk-starcta__icon { color: #f5c542; }
+.fk-starcta__icon svg { width: 1.35rem; height: 1.35rem; }
+.fk-starcta__body { min-width: 0; }
+.fk-starcta__title { margin: 0 0 0.15rem; font-weight: 700; color: var(--fk-text); }
+.fk-starcta__text { margin: 0; font-size: 0.92rem; color: var(--fk-muted); }
+.fk-starcta__btn { white-space: nowrap; }
+.fk-starcta__count {
+  padding: 0.05rem 0.45rem; border-radius: 999px;
+  background: rgba(0, 0, 0, 0.14); font: 600 0.78rem/1.6 var(--fk-mono);
+}
+@media (max-width: 42rem) {
+  .fk-starcta { grid-template-columns: auto minmax(0, 1fr); }
+  .fk-starcta__btn { grid-column: 1 / -1; justify-self: start; }
+}
+
+.fk-demo { margin: 2.4rem 0 0; }
+.fk-demo__intro { color: var(--fk-muted); font-size: 0.95rem; margin: 0 0 0.9rem; }
+.fk-demo__frame {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+  border: 1px solid var(--fk-border-strong); border-radius: var(--fk-radius);
+  background: var(--fk-surface-2);
+}
+.fk-demo__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.fk-demo__start {
+  position: absolute; inset: 0; display: grid; place-content: center; gap: 0.4rem;
+  width: 100%; padding: 1.5rem; border: 0; cursor: pointer;
+  background: linear-gradient(145deg, var(--fk-surface) 0%, var(--fk-surface-2) 100%);
+  color: var(--fk-text); text-align: center;
+}
+.fk-demo__start:hover .fk-demo__label { color: var(--fk-accent); }
+.fk-demo__start:focus-visible { outline: 3px solid var(--fk-accent); outline-offset: -3px; }
+.fk-demo__badge {
+  justify-self: center; padding: 0.2rem 0.55rem; border-radius: 999px;
+  background: var(--fk-accent-soft); color: var(--fk-accent);
+  font: 600 0.7rem/1.4 var(--fk-mono); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.fk-demo__label { font-size: 1.12rem; font-weight: 700; transition: color 0.15s; }
+.fk-demo__url {
+  max-width: 32rem; color: var(--fk-muted); font: 0.78rem/1.5 var(--fk-mono);
+  overflow-wrap: anywhere;
+}
+.fk-demo__note { margin: 0.65rem 0 0; font-size: 0.88rem; color: var(--fk-muted); }
+.fk-demo.is-loading .fk-demo__start { opacity: 0.65; cursor: progress; }
+
+/* Language suggestion strip (progressive enhancement, never a redirect). */
+.fk-langbar {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  padding: 0.55rem var(--fk-gutter); border-bottom: 1px solid var(--fk-border);
+  background: var(--fk-surface-2); color: var(--fk-text-2); font-size: 0.9rem;
+}
+.fk-langbar[hidden] { display: none; }
+.fk-langbar a { font-weight: 650; color: var(--fk-accent); }
+.fk-langbar button {
+  border: 0; background: none; color: var(--fk-muted); cursor: pointer;
+  font-size: 1.1rem; line-height: 1; padding: 0.2rem 0.4rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .fk-body *, .fk-body *::before, .fk-body *::after {

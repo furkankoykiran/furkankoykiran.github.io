@@ -307,7 +307,8 @@
       "repo": "furkankoykiran/awesome-trending-repos",
       "url": "https://github.com/furkankoykiran/awesome-trending-repos",
       "links": {
-        "live": "https://furkankoykiran.com.tr/awesome-trending-repos/"
+        "live": "https://furkankoykiran.com.tr/awesome-trending-repos/",
+        "embed": "https://furkankoykiran.com.tr/awesome-trending-repos/"
       },
       "stars": 23,
       "language": "JavaScript",
@@ -355,7 +356,8 @@
       "repo": "furkankoykiran/EarthquakeSim",
       "url": "https://github.com/furkankoykiran/EarthquakeSim",
       "links": {
-        "live": "https://furkankoykiran.com.tr/EarthquakeSim/"
+        "live": "https://furkankoykiran.com.tr/EarthquakeSim/",
+        "embed": "https://furkankoykiran.com.tr/EarthquakeSim/"
       },
       "stars": 0,
       "language": "JavaScript",
@@ -491,7 +493,8 @@
       "repo": "furkankoykiran/Memoryze",
       "url": "https://github.com/furkankoykiran/Memoryze",
       "links": {
-        "live": "https://furkankoykiran.com.tr/Memoryze/"
+        "live": "https://furkankoykiran.com.tr/Memoryze/",
+        "embed": "https://furkankoykiran.com.tr/Memoryze/"
       },
       "stars": 3,
       "language": "TypeScript",
@@ -624,12 +627,59 @@
       }
     },
     {
+      "slug": "telegram-ads-mcp",
+      "name": "telegram-ads-mcp",
+      "repo": "furkankoykiran/telegram-ads-mcp",
+      "url": "https://github.com/furkankoykiran/telegram-ads-mcp",
+      "links": {
+        "package": "https://www.npmjs.com/package/telegram-ads-mcp"
+      },
+      "stars": 1,
+      "language": "TypeScript",
+      "tags": [
+        "TypeScript",
+        "MCP SDK",
+        "Zod"
+      ],
+      "topics": [
+        "advertising",
+        "ai-agents",
+        "claude",
+        "code-mode",
+        "codex",
+        "cursor",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "opencode",
+        "telegram",
+        "telegram-ads",
+        "typescript"
+      ],
+      "category": "mcp",
+      "featured": false,
+      "featured_rank": 99,
+      "early": false,
+      "license": "MIT",
+      "created": "2026-11-21",
+      "pushed": "2026-11-21",
+      "tr": {
+        "summary": "Resmî Telegram Ads API'si için MCP sunucusu: kampanyaları, reklamları, istatistikleri, kitleleri ve hedeflemeyi ajanlardan yönetin.",
+        "description": "Resmî Telegram Ads API'si için açık kaynak Model Context Protocol (MCP) sunucusu. Claude, Cursor, Codex ve diğer yapay zekâ ajanlarından reklam hesabı, kampanya, reklam, istatistik, kitle, piksel ve hedefleme yönetimi yapılmasını sağlar. TypeScript ile yazılmış, npm'de telegram-ads-mcp adıyla yayımlanmıştır."
+      },
+      "en": {
+        "summary": "An MCP server for the official Telegram Ads API: manage accounts, campaigns, ads, stats, audiences and targeting from AI agents.",
+        "description": "Open-source Model Context Protocol (MCP) server for the official Telegram Ads API. Lets Claude, Cursor, Codex and other AI agents manage accounts, campaigns, ads, stats, audiences, pixels and targeting. Written in TypeScript and published on npm as telegram-ads-mcp."
+      }
+    },
+    {
       "slug": "hues-and-cues",
       "name": "hues-and-cues",
       "repo": "furkankoykiran/hues-and-cues",
       "url": "https://github.com/furkankoykiran/hues-and-cues",
       "links": {
-        "live": "https://furkankoykiran.com.tr/hues-and-cues/"
+        "live": "https://furkankoykiran.com.tr/hues-and-cues/",
+        "embed": "https://furkankoykiran.com.tr/hues-and-cues/"
       },
       "stars": 1,
       "language": "CSS",
@@ -751,7 +801,8 @@
       "repo": "furkankoykiran/wavelength",
       "url": "https://github.com/furkankoykiran/wavelength",
       "links": {
-        "live": "https://furkankoykiran.com.tr/wavelength/"
+        "live": "https://furkankoykiran.com.tr/wavelength/",
+        "embed": "https://furkankoykiran.com.tr/wavelength/"
       },
       "stars": 1,
       "language": "JavaScript",
@@ -948,7 +999,8 @@
       "repo": "furkankoykiran/XRLabLLM",
       "url": "https://github.com/furkankoykiran/XRLabLLM",
       "links": {
-        "live": "https://furkankoykiran.com.tr/XRLabLLM/"
+        "live": "https://furkankoykiran.com.tr/XRLabLLM/",
+        "embed": "https://furkankoykiran.com.tr/XRLabLLM/"
       },
       "stars": 0,
       "language": "HTML",
@@ -982,12 +1034,12 @@
       }
     },
     {
-      "slug": "prospectforge",
-      "name": "ProspectForge",
-      "repo": "furkankoykiran/ProspectForge",
-      "url": "https://github.com/furkankoykiran/ProspectForge",
+      "slug": "leadwalk",
+      "name": "Leadwalk",
+      "repo": "furkankoykiran/Leadwalk",
+      "url": "https://github.com/furkankoykiran/Leadwalk",
       "links": {},
-      "stars": 0,
+      "stars": 2,
       "language": "TypeScript",
       "tags": [
         "TypeScript",
@@ -999,31 +1051,49 @@
         "Vue"
       ],
       "topics": [
-        "nuxt",
-        "vue",
-        "typescript",
-        "sqlite",
-        "google-places-api",
-        "google-maps",
+        "crm",
+        "field-sales",
         "gemini",
         "generative-ai",
+        "google-maps",
+        "google-places-api",
+        "i18n",
         "lead-generation",
-        "sales"
+        "local-first",
+        "nuxt",
+        "playwright",
+        "prospecting",
+        "sales",
+        "small-business",
+        "sqlite",
+        "tailwindcss",
+        "typescript",
+        "vitest",
+        "vue",
+        "walk-in-sales"
       ],
       "category": "web",
       "featured": false,
       "featured_rank": 99,
       "early": false,
-      "license": "MIT",
+      "license": "Apache-2.0",
       "created": "2026-08-11",
-      "pushed": "2026-10-14",
+      "pushed": "2026-11-13",
       "tr": {
-        "summary": "Haritadan seçilen bölgedeki işletmeleri bulup her biri için Gemini ile ürün fikri ve satış konuşması hazırlayan yerel çalışan araç.",
-        "description": "Harita üzerinden seçilen bir bölgedeki yerel işletmeleri Google Places'ten çeken, her işletmenin ihtiyaç duyabileceği yazılım/ürün fikirlerini ve satış konuşmasını Gemini ile üreten, tamamen yerel çalışan AI destekli bir satış ön-hazırlık aracı. Nuxt 4 + TypeScript + Vue ile yazılmış, verileri yerel bir SQLite dosyasında saklar."
+        "summary": "Açık kaynak saha satış çalışma alanı: haritadan yerel işletmeleri bulun, hangisinin size daha çok ihtiyacı olduğunu sıralayın ve kapıyı çalmadan önce kişisel bir satış konuşması hazırlayın.",
+        "description": "Yerel öncelikli, açık kaynak saha satış çalışma alanı. Google Maps üzerinden seçilen bölgedeki yerel işletmeleri bulur, her birini ihtiyaç ve potansiyele göre sıralar; Gemini ile işletmeye özel ürün fikirleri ve satış konuşması üretir. Nuxt 4, Vue, TypeScript ve yerel SQLite ile yazılmıştır; Türkçe ve İngilizce arayüzü vardır."
       },
       "en": {
-        "summary": "A local-first tool that finds businesses in a chosen map area and drafts product ideas and a sales pitch for each with Gemini.",
-        "description": "Local-first, AI-assisted prospecting tool for small businesses. Pick an area on a map, pull local businesses from Google Places, and generate product ideas and a sales pitch per business with Gemini. Nuxt 4, Vue and TypeScript with a local SQLite database."
+        "summary": "An open-source field-sales workspace: find local businesses on the map, rank who needs you most, and walk in with a tailored pitch.",
+        "description": "Local-first, open-source field-sales workspace. It finds local businesses on Google Maps, ranks them by need and potential, and drafts product ideas and a walk-in sales pitch for each with Gemini. Built with Nuxt 4, Vue, TypeScript and a local SQLite database, with an English and Turkish interface."
+      },
+      "aliases": {
+        "tr": [
+          "/projeler/prospectforge/"
+        ],
+        "en": [
+          "/projects/prospectforge/"
+        ]
       }
     },
     {
@@ -1032,7 +1102,8 @@
       "repo": "furkankoykiran/contextify-cli",
       "url": "https://github.com/furkankoykiran/contextify-cli",
       "links": {
-        "live": "https://contextify.live"
+        "live": "https://contextify.live",
+        "embed": "https://contextify.live"
       },
       "stars": 0,
       "language": "TypeScript",

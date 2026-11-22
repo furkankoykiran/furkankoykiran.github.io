@@ -13,6 +13,8 @@
     <article class="fk-proj__body">
       <h2>{{ i18n "fk.about_project" }}</h2>
       {{ .Content }}
+      {{ partial "fk/embed.html" $p }}
+      {{ partial "fk/star-cta.html" $p }}
       {{- with $p.tags }}
       <h2>{{ i18n "fk.tech" }}</h2>
       <ul class="fk-tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
@@ -39,15 +41,15 @@
         {{- with $p.pushed }}<dt>{{ i18n "fk.last_update" }}</dt><dd><time datetime="{{ . }}">{{ time.AsTime . | time.Format ":date_medium" }}</time></dd>{{ end }}
       </dl>
       <div class="fk-proj__actions">
-        <a class="fk-btn fk-btn--primary" href="{{ $p.url }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "github" }}</span>{{ i18n "fk.view_repo" }}</a>
+        <a class="fk-btn fk-btn--primary" href="{{ $p.url }}" rel="noopener" data-ga-event="github_repo_click" data-ga-param-repo="{{ $p.name }}" data-ga-param-placement="project"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "github" }}</span>{{ i18n "fk.view_repo" }}</a>
         {{- with $p.links.live }}
-        <a class="fk-btn" href="{{ . }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "external" }}</span>{{ i18n "fk.view_live" }}</a>
+        <a class="fk-btn" href="{{ . }}" rel="noopener" data-ga-event="outbound_click" data-ga-param-link_domain="live"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "external" }}</span>{{ i18n "fk.view_live" }}</a>
         {{- end }}
         {{- with $p.links.package }}
-        <a class="fk-btn" href="{{ . }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "package" }}</span>{{ i18n "fk.view_package" }}</a>
+        <a class="fk-btn" href="{{ . }}" rel="noopener" data-ga-event="outbound_click" data-ga-param-link_domain="npm"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "package" }}</span>{{ i18n "fk.view_package" }}</a>
         {{- end }}
         {{- with $p.links.model }}
-        <a class="fk-btn" href="{{ . }}" rel="noopener"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "package" }}</span>{{ i18n "fk.view_model" }}</a>
+        <a class="fk-btn" href="{{ . }}" rel="noopener" data-ga-event="outbound_click" data-ga-param-link_domain="model"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "package" }}</span>{{ i18n "fk.view_model" }}</a>
         {{- end }}
       </div>
     </aside>

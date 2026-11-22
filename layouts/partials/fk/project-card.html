@@ -19,7 +19,7 @@
   <div class="fk-card__foot">
     <span class="fk-meta">
       {{- if gt (int $p.stars) 0 }}
-      <span class="fk-star" title="{{ i18n "fk.stars_aria" $p.stars }}"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "star" }}</span><span class="fk-sr">{{ i18n "fk.stars_aria" $p.stars }}</span><span aria-hidden="true">{{ $p.stars }}</span></span>
+      <a class="fk-star" href="{{ $p.url }}" rel="noopener" title="{{ i18n "fk.stars_aria" $p.stars }}" data-ga-event="github_star_click" data-ga-param-repo="{{ $p.name }}" data-ga-param-placement="card"><span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "star" }}</span><span class="fk-sr">{{ i18n "fk.stars_aria" $p.stars }}</span><span aria-hidden="true">{{ $p.stars }}</span></a>
       {{- end }}
       {{- with $p.language }}<span>{{ . }}</span>{{ end }}
     </span>

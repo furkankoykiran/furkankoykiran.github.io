@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and fill in the zone ID from the Cloudflare dashboard.
+zone_id = "00000000000000000000000000000000"
+
+# Optional overrides; the defaults are the production hostnames.
+# portfolio_host = "furkankoykiran.com.tr"
+# blog_host      = "blog.furkankoykiran.com.tr"
