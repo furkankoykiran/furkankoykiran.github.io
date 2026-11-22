@@ -1,0 +1,68 @@
+{
+  "name": "Static site cache policy",
+  "description": "Cache rules for the Hugo portfolio and blog on GitHub Pages",
+  "kind": "zone",
+  "phase": "http_request_cache_settings",
+  "rules": [
+    {
+      "ref": "html_bypass",
+      "description": "HTML is never edge-cached, so deploys are visible immediately",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" or http.host eq \"blog.furkankoykiran.com.tr\") and http.request.method eq \"GET\" and not http.request.uri.path contains \".\"",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": false
+      }
+    },
+    {
+      "ref": "immutable_build_assets",
+      "description": "Fingerprinted CSS, JavaScript and fonts: one year at the edge and in the browser",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" or http.host eq \"blog.furkankoykiran.com.tr\") and http.request.method eq \"GET\" and http.request.uri.path matches \"^/(css|js|fonts)/\"",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "override_origin",
+          "default": 31536000
+        },
+        "browser_ttl": {
+          "mode": "override_origin",
+          "default": 31536000
+        }
+      }
+    },
+    {
+      "ref": "images",
+      "description": "Content-addressed images: one month at the edge and in the browser",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" or http.host eq \"blog.furkankoykiran.com.tr\") and http.request.method eq \"GET\" and http.request.uri.path matches \"\\.(avif|webp|png|jpe?g|gif|svg|ico)$\"",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "override_origin",
+          "default": 2592000
+        },
+        "browser_ttl": {
+          "mode": "override_origin",
+          "default": 2592000
+        }
+      }
+    },
+    {
+      "ref": "machine_readable",
+      "description": "Sitemap, llms.txt, ai.txt, security.txt and manifest: five minutes",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" or http.host eq \"blog.furkankoykiran.com.tr\") and http.request.method eq \"GET\" and http.request.uri.path matches \"\\.(xml|txt|json|webmanifest)$\"",
+      "action": "set_cache_settings",
+      "action_parameters": {
+        "cache": true,
+        "edge_ttl": {
+          "mode": "override_origin",
+          "default": 300
+        },
+        "browser_ttl": {
+          "mode": "override_origin",
+          "default": 300
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Baseline security and freshness headers",
+  "description": "Headers GitHub Pages cannot set on its own",
+  "kind": "zone",
+  "phase": "http_response_headers_transform",
+  "rules": [
+    {
+      "ref": "baseline_security_headers",
+      "description": "Baseline headers for both sites",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" or http.host eq \"blog.furkankoykiran.com.tr\")",
+      "action": "rewrite",
+      "action_parameters": {
+        "headers": {
+          "X-Content-Type-Options": {
+            "operation": "set",
+            "value": "nosniff"
+          },
+          "Referrer-Policy": {
+            "operation": "set",
+            "value": "strict-origin-when-cross-origin"
+          },
+          "Permissions-Policy": {
+            "operation": "set",
+            "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+          }
+        }
+      }
+    },
+    {
+      "ref": "html_revalidate",
+      "description": "Browsers revalidate HTML instead of keeping a stale deploy for ten minutes",
+      "expression": "(http.response.content_type.media_type eq \"text/html\")",
+      "action": "rewrite",
+      "action_parameters": {
+        "headers": {
+          "Cache-Control": {
+            "operation": "set",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        }
+      }
+    }
+  ]
+}

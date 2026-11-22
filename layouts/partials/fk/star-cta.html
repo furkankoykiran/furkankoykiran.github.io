@@ -1,0 +1,17 @@
+{{- /* GitHub star callout for a project page. Context: a project map from
+  data/projects.json. The link opens the repository; starring needs a GitHub
+  session, so there is no direct stargazers URL. */ -}}
+{{- $p := . -}}
+<aside class="fk-starcta" aria-labelledby="starcta-title">
+  <span class="fk-starcta__icon" aria-hidden="true">{{ partial "fk/svg.html" "star" }}</span>
+  <div class="fk-starcta__body">
+    <p class="fk-starcta__title" id="starcta-title">{{ i18n "fk.star_cta_title" }}</p>
+    <p class="fk-starcta__text">{{ i18n "fk.star_cta_body" }}</p>
+  </div>
+  <a class="fk-btn fk-btn--primary fk-starcta__btn" href="{{ $p.url }}" rel="noopener"
+     data-ga-event="github_star_click" data-ga-param-repo="{{ $p.name }}" data-ga-param-placement="project">
+    <span class="fk-icon" aria-hidden="true">{{ partial "fk/svg.html" "github" }}</span>
+    <span>{{ i18n "fk.star_cta_button" }}</span>
+    {{- if gt (int $p.stars) 0 }}<span class="fk-starcta__count">{{ $p.stars }}</span>{{ end }}
+  </a>
+</aside>

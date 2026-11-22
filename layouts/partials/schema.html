@@ -99,6 +99,8 @@
   {{- $webpage = merge $webpage (dict "mainEntity" (dict "@type" "ItemList" "numberOfItems" (len $items) "itemListElement" $items)) -}}
 {{- end -}}
 {{- with .Params.project -}}
+  {{- $p := . -}}
+  {{- $live := .links.live -}}
   {{- $code := dict
     "@type" "SoftwareSourceCode"
     "@id" (printf "%s#code" $.Permalink)
@@ -115,9 +117,29 @@
   {{- with .license }}{{ $code = merge $code (dict "license" (printf "https://spdx.org/licenses/%s.html" .)) }}{{ end -}}
   {{- with .created }}{{ $code = merge $code (dict "dateCreated" .) }}{{ end -}}
   {{- with .pushed }}{{ $code = merge $code (dict "dateModified" .) }}{{ end -}}
-  {{- with .links.live }}{{ $code = merge $code (dict "sameAs" .) }}{{ end -}}
+  {{- with $live }}{{ $code = merge $code (dict "sameAs" (slice .)) }}{{ end -}}
   {{- $webpage = merge $webpage (dict "mainEntity" (dict "@id" (printf "%s#code" $.Permalink))) -}}
   {{- $graph = $graph | append $code -}}
+  {{- /* Deployed projects get a WebApplication entity as well, so search and
+    AI systems can treat them as usable software, not just source code. */ -}}
+  {{- with $live }}
+  {{- $app := dict
+    "@type" "SoftwareApplication"
+    "@id" (printf "%s#application" $.Permalink)
+    "name" $p.name
+    "description" (index $p (cond $isTR "tr" "en")).summary
+    "url" .
+    "applicationCategory" "WebApplication"
+    "operatingSystem" "Any"
+    "isAccessibleForFree" true
+    "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD")
+    "author" (dict "@id" $personID)
+    "creator" (dict "@id" $personID)
+    "sameAs" (slice . $p.url)
+    "inLanguage" $lang
+  -}}
+  {{- $graph = $graph | append $app -}}
+  {{- end -}}
 {{- end -}}
 {{- $graph = $graph | append $webpage -}}
 

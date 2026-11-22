@@ -42,6 +42,22 @@
   {{- end }}
   <link rel="describedby" type="text/plain" href="{{ "llms.txt" | absLangURL }}" title="llms.txt">
 
+  {{- /* Translation data for the language suggestion strip in fk.js. The strip
+    never redirects; it only offers the other language. */}}
+  {{- $other := "" -}}
+  {{- $otherLang := cond $isTR "en" "tr" -}}
+  {{- range .Translations }}{{ if eq .Language.Lang $otherLang }}{{ $other = .RelPermalink }}{{ end }}{{ end -}}
+  {{- with $other }}
+  <script type="application/json" id="fk-lang-suggest-data">{{ dict
+    "href" .
+    "lang" $otherLang
+    "label" (cond $isTR "Dil önerisi" "Language suggestion")
+    "text" (cond $isTR "Bu sayfanın İngilizcesi de var." "This page is also available in Turkish.")
+    "action" (cond $isTR "İngilizce oku" "Türkçe oku")
+    "dismiss" (cond $isTR "Öneriyi kapat" "Dismiss suggestion")
+    | jsonify | safeJS }}</script>
+  {{- end }}
+
   <meta property="og:site_name" content="{{ site.Title }}">
   <meta property="og:type" content="{{ cond (eq .Params.layout "about") "profile" "website" }}">
   <meta property="og:title" content="{{ $shortTitle }}">

@@ -24,6 +24,11 @@ hugo --minify --gc          # production build into public/
 
 Use Hugo **extended 0.167.0** (the version CI uses). If you cloned without `--recurse-submodules`, run `git submodule update --init --recursive` first.
 
+Cloudflare cache, security-header and legacy-URL policies live in
+[`infra/cloudflare/`](infra/cloudflare/), as dashboard steps, Terraform and
+Rulesets API payloads. GitHub Pages cannot set custom headers or return a real
+301; the Cloudflare zone must be proxied for those rules to apply.
+
 ## Editing content
 
 | What | Where |

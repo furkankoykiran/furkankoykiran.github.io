@@ -1,0 +1,38 @@
+{
+  "name": "Legacy project redirects",
+  "description": "ProspectForge was renamed to Leadwalk",
+  "kind": "zone",
+  "phase": "http_request_dynamic_redirect",
+  "rules": [
+    {
+      "ref": "prospectforge_tr",
+      "description": "Old Turkish ProspectForge URL to Leadwalk",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" and http.request.uri.path matches \"^/projeler/prospectforge/?$\")",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "status_code": 301,
+          "target_url": {
+            "value": "https://furkankoykiran.com.tr/projeler/leadwalk/"
+          },
+          "preserve_query_string": true
+        }
+      }
+    },
+    {
+      "ref": "prospectforge_en",
+      "description": "Old English ProspectForge URL to Leadwalk",
+      "expression": "(http.host eq \"furkankoykiran.com.tr\" and http.request.uri.path matches \"^/en/projects/prospectforge/?$\")",
+      "action": "redirect",
+      "action_parameters": {
+        "from_value": {
+          "status_code": 301,
+          "target_url": {
+            "value": "https://furkankoykiran.com.tr/en/projects/leadwalk/"
+          },
+          "preserve_query_string": true
+        }
+      }
+    }
+  ]
+}
